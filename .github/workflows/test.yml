@@ -18,6 +18,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: yarn
       - name: Coverage
-          env:
-            GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          run: yarn test --coverage
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: yarn test --coverage
