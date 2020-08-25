@@ -1,0 +1,11 @@
+{
+  icon: true,
+  typescript: true,
+  memo: true,
+  svgProps: {
+    "fill": "currentColor"
+  },
+  replaceAttrValues: {
+    "1em": "100%"
+  }
+}

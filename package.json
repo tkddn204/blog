@@ -1,28 +1,72 @@
 {
-  "name": "rp-blog",
+  "name": "blog",
   "version": "0.1.0",
   "private": true,
+  "repository": {
+    "url": "https://github.com/tkddn204/blog"
+  },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.2.5",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "@storybook/theming": "^6.0.17",
     "@types/jest": "^24.0.0",
+    "@types/moment": "^2.13.0",
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "@types/react-redux": "^7.1.7",
+    "@types/react-router-dom": "^5.1.5",
+    "@types/redux-logger": "^3.0.8",
+    "@types/styled-components": "^5.1.0",
+    "firebase": "^7.19.0",
+    "framer-motion": "^2.4.3-beta.2",
+    "husky": "4.2.5",
+    "i18next": "^19.7.0",
+    "jest-chain": "^1.1.5",
+    "jest-extended": "^0.11.5",
+    "jest-styled-components": "^7.0.3",
+    "lint-staged": "^10.2.12",
+    "invert-color": "^2.0.0",
+    "moment": "^2.27.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-i18next": "^11.7.1",
+    "react-redux": "^7.2.0",
+    "react-redux-firebase": "^3.7.0",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+    "redux-firestore": "^0.13.0",
+    "redux-logger": "^3.0.6",
+    "styled-components": "^5.1.1",
+    "styled-normalize": "^8.0.7",
     "typescript": "~3.7.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "clean": "rimraf build",
+    "lint": "eslint -f table src --ext .ts --ext .tsx",
+    "lint:fix": "eslint --fix -f table src --ext .ts --ext .tsx",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "yarn lint:fix",
+      "git add ."
+    ]
   },
   "browserslist": {
     "production": [
@@ -35,5 +79,29 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.4",
+    "@storybook/addon-actions": "^6.0.17",
+    "@storybook/addon-essentials": "^6.0.17",
+    "@storybook/addon-links": "^6.0.17",
+    "@storybook/node-logger": "^6.0.17",
+    "@storybook/preset-create-react-app": "^3.1.4",
+    "@storybook/react": "^6.0.17",
+    "@svgr/cli": "^5.4.0",
+    "@typescript-eslint/eslint-plugin": "^3.10.0",
+    "@typescript-eslint/parser": "^3.10.0",
+    "babel-loader": "^8.1.0",
+    "eslint-config-airbnb": "18.2.0",
+    "eslint-config-airbnb-typescript": "^9.0.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "2.21.2",
+    "eslint-plugin-jest": "^23.20.0",
+    "eslint-plugin-jsx-a11y": "6.3.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "7.20.0",
+    "eslint-plugin-react-hooks": "4.0.0",
+    "prettier": "^2.1.0",
+    "react-is": "^16.13.1"
   }
 }
