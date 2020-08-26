@@ -12,6 +12,7 @@ import {
 import { constants as rfConstants, firestoreReducer } from 'redux-firestore'
 
 import localeReducer from '../Features/locale/localeSlice'
+import themeReducer from '../Features/theme/themeSlice'
 
 /**
  * 미들웨어 - 리액트-리덕스-파이어베이스 설정
@@ -40,6 +41,7 @@ export const store = configureStore({
     firebase: firebaseReducer,
     firestore: firestoreReducer,
     locale: localeReducer,
+    theme: themeReducer,
   },
   middleware,
 })

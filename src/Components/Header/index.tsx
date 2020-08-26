@@ -1,10 +1,9 @@
-import Styled from 'styled-components'
+import Styled from '@emotion/styled'
 
-const Header = Styled.header`
+const Header = Styled('header')`
   font-size: 32px;
   outline: none;
   border: 2px solid transparent;
-  color: ${(props) => props.theme.colors.black};
   padding-bottom: 4px;
   cursor: pointer;
   border-radius: 2px;

@@ -1,6 +1,6 @@
-import Styled from 'styled-components'
+import Styled from '@emotion/styled'
 
-const Layout = Styled.div`
+const Layout = Styled('div')`
   text-align: center;
   min-height: 100vh;
   display: flex;

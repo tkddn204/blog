@@ -1,6 +1,6 @@
-import Styled from 'styled-components'
+import Styled from '@emotion/styled'
 
-const InputText = Styled.input`
+const InputText = Styled('input')`
   font-size: 32px;
   padding: 2px;
   width: 64px;

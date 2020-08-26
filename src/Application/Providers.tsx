@@ -1,8 +1,8 @@
 import React, { FC, ReactNode } from 'react'
 import { Provider as ReduxProvider } from 'react-redux'
-import { ThemeProvider } from 'styled-components'
-
-import { Normalize } from 'styled-normalize'
+import 'tailwindcss/dist/base.min.css'
+import { Global, css } from '@emotion/core'
+import normalize from 'emotion-normalize'
 
 import firebase from 'firebase/app'
 import 'firebase/auth'
@@ -10,13 +10,18 @@ import 'firebase/firestore'
 import 'firebase/storage'
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
 import { createFirestoreInstance } from 'redux-firestore'
-import { firebaseConfig, reduxFirebaseConfig } from './FirebaseConfig'
-import LocaleProvider from '../Features/locale/LocaleProvider'
-import { LightTheme } from './Theme'
+import {
+  firebaseConfig,
+  firebaseTestConfig,
+  reduxFirebaseConfig,
+} from './FirebaseConfig'
 import { store } from './Store'
+import LocaleProvider from '../Features/locale/LocaleProvider'
+import SelectThemeProvider from '../Features/theme/SelectThemeProvider'
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig)
+const isDevelopment: boolean = process.env.NODE_ENV === 'development'
+firebase.initializeApp(isDevelopment ? firebaseTestConfig : firebaseConfig)
 firebase.auth()
 firebase.firestore()
 firebase.storage()
@@ -33,10 +38,14 @@ const Providers: FC<Props> = ({ children }) => (
         createFirestoreInstance={createFirestoreInstance}
       >
         <LocaleProvider>
-          <ThemeProvider theme={LightTheme}>
-            <Normalize />
+          <SelectThemeProvider>
+            <Global
+              styles={css`
+                ${normalize}
+              `}
+            />
             {children}
-          </ThemeProvider>
+          </SelectThemeProvider>
         </LocaleProvider>
       </ReactReduxFirebaseProvider>
     </ReduxProvider>

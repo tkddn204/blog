@@ -34,6 +34,7 @@ export const localeSlice = createSlice<LocaleState, Reducers>({
     change: (state, action) => {
       // eslint-disable-next-line no-param-reassign
       state = action.payload
+      return state
     },
   },
 })

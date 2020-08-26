@@ -42,10 +42,18 @@ module.exports = {
         endOfLine: 'auto',
       },
     ],
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        'devDependencies': true,
+        'optionalDependencies': true
+      }
+    ],
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['error'],
     'no-console': ['error'],
     'linebreak-style': 'off',
+    'jsx-a11y/accessible-emoji': 0
   },
   overrides: [
     {

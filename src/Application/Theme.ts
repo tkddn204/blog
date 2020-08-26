@@ -1,23 +1,20 @@
-import { create } from '@storybook/theming'
+import { create, ThemeVars } from '@storybook/theming'
 
-export const LightTheme = {
+type BaseType = 'light' | 'dark'
+type BaseThemeType = (base: BaseType) => ThemeVars
+interface RestThemeType {
   colors: {
-    anchor: 'pink',
-    violet: 'rgb(112, 76, 182)',
-    violetOpacity: (opacity: string) => `rgb(112, 76, 182, ${opacity})`,
-  },
+    anchor: string
+    button: string
+  }
+  backgrounds: {
+    default: string
+  }
 }
+export type ThemeType = ThemeVars & RestThemeType
 
-export const blackTheme = {
-  colors: {
-    anchor: 'pink',
-    violet: 'rgb(112, 76, 182)',
-    violetOpacity: (opacity: string) => `rgb(112, 76, 182, ${opacity})`,
-  },
-}
-
-export default create({
-  base: 'light',
+const baseTheme: BaseThemeType = (base) => ({
+  base,
 
   colorPrimary: 'hotpink',
   colorSecondary: 'deepskyblue',
@@ -51,3 +48,29 @@ export default create({
   brandUrl: 'https://tkddn204.github.io/blog',
   brandImage: 'url',
 })
+
+const lightRestTheme: RestThemeType = {
+  colors: {
+    anchor: 'hotpink',
+    button: 'black',
+  },
+  backgrounds: {
+    default: 'white',
+  },
+}
+
+const darkRestTheme: RestThemeType = {
+  colors: {
+    anchor: 'blue',
+    button: 'white',
+  },
+  backgrounds: {
+    default: 'black',
+  },
+}
+
+export const LightTheme = create(
+  baseTheme('light'),
+  lightRestTheme
+) as ThemeType
+export const DarkTheme = create(baseTheme('dark'), darkRestTheme) as ThemeType

@@ -1,8 +1,8 @@
 /**
  * Check is color to string
  *
- * ref: https://www.regexpal.com/97509
- * ref2: https://stackoverflow.com/a/48485007
+ * @ref: https://www.regexpal.com/97509
+ * @ref2: https://stackoverflow.com/a/48485007
  * @param color string
  * @return color is string
  */
