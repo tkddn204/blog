@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect } from 'react'
+import React, { FC, ReactNode, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { I18nextProvider } from 'react-i18next'
 import { localeSelector } from '../Selectors'
@@ -8,7 +8,7 @@ type Props = {
   children: ReactNode
 }
 
-const LocaleProvider = ({ children }: Props) => {
+const LocaleProvider: FC<Props> = ({ children }: Props) => {
   const locale = useSelector(localeSelector)
   useEffect(() => {
     if (i18next.language !== locale) {

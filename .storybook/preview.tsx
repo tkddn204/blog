@@ -1,12 +1,12 @@
-import React, { FC, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import React, {FC, useEffect} from 'react'
+import {useDispatch} from 'react-redux'
 import Providers from '../src/Application/Providers'
-import { change } from '../src/Features/theme/themeSlice'
+import {change} from '../src/Features/theme/themeSlice'
 
 export const decorators = [
   (Story: any, context: any) => {
     const WithReduxStory: FC = () => {
-      const { theme } = context.globals
+      const {theme} = context.globals
       const dispatch = useDispatch()
       useEffect(() => {
         if (theme === 'light' || theme === 'dark') {
@@ -18,14 +18,14 @@ export const decorators = [
 
     return (
       <Providers>
-        <WithReduxStory />
+        <WithReduxStory/>
       </Providers>
     )
   }
 ]
 
 export const parameters = {
-  actions: { argTypesRegex: '^on[A-Z].*' }
+  actions: {argTypesRegex: '^on[A-Z].*'}
 }
 
 export const globalTypes = {
@@ -45,8 +45,8 @@ export const globalTypes = {
     toolbar: {
       icon: 'globe',
       items: [
-        { value: 'ko', right: '🇰🇷', title: '한국어' },
-        { value: 'en', right: '🇺🇸', title: 'English' },
+        {value: 'ko', right: '🇰🇷', title: '한국어'},
+        {value: 'en', right: '🇺🇸', title: 'English'},
       ],
     },
   },
