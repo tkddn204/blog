@@ -1,15 +1,15 @@
 import React, { ReactNode } from 'react'
 import { Meta, Story } from '@storybook/react/types-6-0'
 import { theme as twTheme } from 'twin.macro'
-import Anchor from '.'
+import Button from '.'
 import DocTemplate from '../../Utils/StorybookDocTemplate'
 
 export default {
-  title: 'Components/Anchor',
-  component: Anchor,
+  title: 'Components/Button',
+  component: Button,
   argTypes: {
     children: {
-      description: '앵커 안에 들어가는 텍스트',
+      description: '버튼 안에 들어가는 텍스트',
       type: {
         required: true,
       },
@@ -21,19 +21,19 @@ export default {
           summary: '-',
         },
       },
-      defaultValue: '기본 앵커',
+      defaultValue: '기본 버튼',
       control: 'text',
     },
     color: {
       description:
-        '앵커의 색을 지정합니다. 올바른 색상 문자열이 아닐 경우 테마 앵커의 색상을 따릅니다.',
-      defaultValue: twTheme`colors.pink.400`,
+        '버튼 텍스트의 색을 지정합니다. 올바른 색상 문자열이 아닐 경우 테마의 색상을 따릅니다.',
+      defaultValue: twTheme`colors.black`,
       table: {
         type: {
           summary: 'color',
         },
         defaultValue: {
-          summary: twTheme`colors.pink.400`,
+          summary: twTheme`colors.black`,
         },
       },
       control: 'color',
@@ -43,18 +43,19 @@ export default {
     docs: {
       page: () =>
         DocTemplate({
-          title: '🍎 Anchor',
-          description: '앵커입니다. 앵커는 `<a>` 태그 컴포넌트입니다.',
+          title: '🥮 Button',
+          description:
+            '버튼입니다. 버튼은 `<button>` 태그 컴포넌트입니다. 다른 버튼의 베이스가 될 수 있습니다.',
         }),
     },
   },
 } as Meta
 
-interface StoryAnchorProps {
+interface StoryButtonProps {
   color: string
   children: ReactNode
 }
-const anchorTemplate: Story<StoryAnchorProps> = (
+const buttonTemplate: Story<StoryButtonProps> = (
   args,
   { globals: { theme, locale } }
 ) => {
@@ -62,10 +63,10 @@ const anchorTemplate: Story<StoryAnchorProps> = (
   const text = locale !== 'ko' ? 'Anchor' : args.children
 
   return theme !== 'notUsed' ? (
-    <Anchor isDark={theme === 'dark'}>{text}</Anchor>
+    <Button isDark={theme === 'dark'}>{text}</Button>
   ) : (
-    <Anchor style={{ color }}>{text}</Anchor>
+    <Button style={{ color }}>{text}</Button>
   )
 }
 
-export const DefaultAnchor = anchorTemplate
+export const DefaultButton = buttonTemplate

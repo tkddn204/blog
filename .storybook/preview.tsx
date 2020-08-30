@@ -35,6 +35,7 @@ export const globalTypes = {
     defaultValue: 'light',
     toolbar: {
       icon: 'circlehollow',
+      // notUsed -> local value first. if not set local value, using light theme
       items: ['notUsed', 'light', 'dark'],
     },
   },

@@ -1,7 +1,6 @@
-import React, { FC, ReactNode } from 'react'
-import { useSelector } from 'react-redux'
-import { ThemeProvider } from 'emotion-theming'
-import { LightTheme, DarkTheme } from '../../Application/Theme'
+import React, { FC, ReactNode, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { change } from './themeSlice'
 import { themeSelector } from '../Selectors'
 
 type Props = {
@@ -9,13 +8,16 @@ type Props = {
 }
 
 const SelectThemeProvider: FC<Props> = ({ children }: Props) => {
+  const dispatch = useDispatch()
   const theme = useSelector(themeSelector)
 
-  return (
-    <ThemeProvider theme={theme === 'dark' ? DarkTheme : LightTheme}>
-      {children}
-    </ThemeProvider>
-  )
+  useEffect(() => {
+    if (theme !== 'dark') {
+      dispatch(change('dark'))
+    }
+  }, [theme, dispatch])
+
+  return <>{children}</>
 }
 
 export default SelectThemeProvider

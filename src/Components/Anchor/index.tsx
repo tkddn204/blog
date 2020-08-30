@@ -1,13 +1,12 @@
-import Styled from '@emotion/styled'
-import { ReactNode } from 'react'
-import { ThemeType } from '../../Application/Theme'
+import tw, { styled } from 'twin.macro'
+import DarkStyled, { DarkStyledProps, DarkStyleType } from '../DarkStyled'
 
-export interface AnchorProps {
-  children: ReactNode
-  theme: ThemeType
+const style: DarkStyleType = {
+  default: tw``,
+  light: tw`text-pink-400`,
+  dark: tw`text-indigo-400`,
+  defaultDark: tw`dark:text-indigo-400`,
 }
-const Anchor = Styled('a')<AnchorProps>`
-  color: ${(props) => props.theme.colors.anchor};
-`
 
+const Anchor = styled.a<DarkStyledProps>(DarkStyled(style))
 export default Anchor

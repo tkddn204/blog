@@ -6,7 +6,7 @@ const Layout = Styled('div')`
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: calc(10px + 2vmin);
+  font-size: 10px;
 `
 
 export default Layout

@@ -18,5 +18,5 @@ interface ThemeSelector {
   (state: RootState): ThemeState
 }
 
-export const localeSelector: LocaleSelector = (state) => state.locale
-export const themeSelector: ThemeSelector = (state) => state.theme
+export const localeSelector: LocaleSelector = (state) => state.persist.locale
+export const themeSelector: ThemeSelector = (state) => state.persist.theme

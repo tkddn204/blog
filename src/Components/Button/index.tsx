@@ -1,31 +1,26 @@
-import Styled from '@emotion/styled'
-import { ThemeType } from '../../Application/Theme'
+import tw, { styled } from 'twin.macro'
+import DarkStyled, { DarkStyledProps, DarkStyleType } from '../DarkStyled'
 
-export interface ButtonProps {
-  color?: string
-  theme: ThemeType
+const style: DarkStyleType = {
+  default: tw`bg-white
+    text-black
+    text-base
+    px-5 pb-2
+    border border-solid border-transparent
+    outline-none
+    cursor-pointer
+    rounded-sm
+    transition-all duration-150
+    hover:(border border-solid shadow)
+    active:bg-blue-400`,
+  light: tw`bg-white text-black active:bg-blue-400`,
+  dark: tw`bg-black text-white active:bg-pink-400`,
+  defaultDark: tw`
+    dark:bg-black
+    dark:text-white
+    dark:active:bg-pink-400
+  `,
 }
-const Button = Styled('button')<ButtonProps>`
-  background: none;
-  font-size: 32px;
-  padding-left: 12px;
-  padding-right: 12px;
-  outline: none;
-  border: 2px solid transparent;
-  color: ${(props) => props.theme.colors.button};
-  padding-bottom: 4px;
-  cursor: pointer;
-  background-color: ${(props) => props.theme.colors.button};
-  border-radius: 2px;
-  transition: all 0.15s;
 
-  :hover, :focus {
-    border: 2px solid ${(props) => props.theme.colors.button};
-  }
-  
-  :active {
-    background-color: ${(props) => props.theme.colors.button};
-  }
-`
-
+const Button = styled.button<DarkStyledProps>(DarkStyled(style))
 export default Button

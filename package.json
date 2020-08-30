@@ -13,7 +13,6 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "@types/jest": "^24.0.0",
-    "@types/moment": "^2.13.0",
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
@@ -21,14 +20,16 @@
     "@types/react-router-dom": "^5.1.5",
     "@types/redux-logger": "^3.0.8",
     "emotion": "^10.0.27",
-    "emotion-normalize": "^10.1.0",
     "emotion-theming": "^10.0.27",
     "firebase": "^7.19.0",
+    "firebase-tools": "^8.9.2",
     "framer-motion": "^2.4.3-beta.2",
+    "global": "^4.4.0",
     "husky": "4.2.5",
     "i18next": "^19.7.0",
     "invert-color": "^2.0.0",
     "jest-chain": "^1.1.5",
+    "jest-emotion": "^10.0.32",
     "jest-extended": "^0.11.5",
     "lint-staged": "^10.2.12",
     "moment": "^2.27.0",
@@ -41,6 +42,7 @@
     "react-scripts": "3.4.3",
     "redux-firestore": "^0.13.0",
     "redux-logger": "^3.0.6",
+    "redux-persist": "^6.0.0",
     "tailwindcss": "^1.7.3",
     "twin.macro": "^1.7.0",
     "typescript": "~3.7.2"
@@ -54,7 +56,8 @@
     "lint": "eslint -f table src --ext .ts --ext .tsx",
     "lint:fix": "eslint --fix -f table src --ext .ts --ext .tsx",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "emulator": "firebase emulators:start"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -79,6 +82,11 @@
       "debug": false
     }
   },
+  "jest": {
+    "snapshotSerializers": [
+      "jest-emotion"
+    ]
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -93,14 +101,14 @@
   },
   "devDependencies": {
     "@babel/core": "^7.11.4",
-    "@storybook/addon-actions": "^6.0.18",
-    "@storybook/addon-docs": "^6.0.18",
-    "@storybook/addon-essentials": "^6.0.18",
-    "@storybook/addon-links": "^6.0.18",
-    "@storybook/node-logger": "^6.0.18",
+    "@storybook/addon-actions": "^6.0.20",
+    "@storybook/addon-docs": "^6.0.20",
+    "@storybook/addon-essentials": "^6.0.20",
+    "@storybook/addon-links": "^6.0.20",
+    "@storybook/node-logger": "^6.0.20",
     "@storybook/preset-create-react-app": "^3.1.4",
-    "@storybook/react": "^6.0.18",
-    "@storybook/theming": "^6.0.18",
+    "@storybook/react": "^6.0.20",
+    "@storybook/theming": "^6.0.20",
     "@svgr/cli": "^5.4.0",
     "@typescript-eslint/eslint-plugin": "^3.10.0",
     "@typescript-eslint/parser": "^3.10.0",
@@ -114,7 +122,6 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "7.20.0",
     "eslint-plugin-react-hooks": "4.0.0",
-    "jest-emotion": "^10.0.32",
     "prettier": "^2.1.0",
     "react-is": "^16.13.1"
   }

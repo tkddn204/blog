@@ -1,13 +1,9 @@
 import Styled from '@emotion/styled'
 
 const Header = Styled('header')`
-  font-size: 32px;
-  outline: none;
-  border: 2px solid transparent;
-  padding-bottom: 4px;
-  cursor: pointer;
-  border-radius: 2px;
-  transition: all 0.15s;
+  height: 24px
+  min-height: 24px
+  background: #999
 `
 
 export default Header
