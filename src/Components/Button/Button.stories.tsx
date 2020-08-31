@@ -1,6 +1,8 @@
-import React, { ReactNode } from 'react'
+/** @jsx jsx */
+import { ReactNode } from 'react'
 import { Meta, Story } from '@storybook/react/types-6-0'
 import { theme as twTheme } from 'twin.macro'
+import { css, jsx } from '@emotion/core'
 import Button from '.'
 import DocTemplate from '../../Utils/StorybookDocTemplate'
 
@@ -55,18 +57,15 @@ interface StoryButtonProps {
   color: string
   children: ReactNode
 }
+
 const buttonTemplate: Story<StoryButtonProps> = (
   args,
-  { globals: { theme, locale } }
+  { globals: { locale } }
 ) => {
   const { color } = args
-  const text = locale !== 'ko' ? 'Anchor' : args.children
+  const text = locale !== 'ko' ? 'Button' : args.children
 
-  return theme !== 'notUsed' ? (
-    <Button isDark={theme === 'dark'}>{text}</Button>
-  ) : (
-    <Button style={{ color }}>{text}</Button>
-  )
+  return <Button custom={css({ color })}>{text}</Button>
 }
 
 export const DefaultButton = buttonTemplate

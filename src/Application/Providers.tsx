@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react'
+import React, { FC } from 'react'
 import { Provider as ReduxProvider } from 'react-redux'
 import 'tailwindcss/dist/base.min.css'
 import { Global, css } from '@emotion/core'
@@ -27,9 +27,7 @@ if (window.location.hostname === 'localhost') {
   })
 }
 
-type Props = { children: ReactNode }
-
-const Providers: FC<Props> = ({ children }) => (
+const Providers: FC = ({ children }) => (
   <React.StrictMode>
     <ReduxProvider store={store}>
       <PersistGate loading={null} persistor={persistor}>

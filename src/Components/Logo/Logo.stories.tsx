@@ -1,6 +1,8 @@
-import React, { ReactNode } from 'react'
+/** @jsx jsx */
+import { ReactNode } from 'react'
 import { Meta, Story } from '@storybook/react/types-6-0'
 import { theme as twTheme } from 'twin.macro'
+import { css, jsx } from '@emotion/core'
 import Logo from '.'
 import DocTemplate from '../../Utils/StorybookDocTemplate'
 
@@ -39,10 +41,10 @@ interface StoryLogoProps {
   color: string
   children: ReactNode
 }
-const logoTemplate: Story<StoryLogoProps> = (args, { globals: { theme } }) => {
+const logoTemplate: Story<StoryLogoProps> = (args) => {
   const { color } = args
 
-  return theme !== 'notUsed' ? <Logo /> : <Logo css={{ color }} />
+  return <Logo custom={css({ color })} />
 }
 
 export const DefaultLogo = logoTemplate

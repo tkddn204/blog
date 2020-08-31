@@ -1,4 +1,6 @@
-import React, { ReactNode } from 'react'
+/** @jsx jsx */
+import { ReactNode } from 'react'
+import { css, jsx } from '@emotion/core'
 import { Meta, Story } from '@storybook/react/types-6-0'
 import { theme as twTheme } from 'twin.macro'
 import Anchor from '.'
@@ -56,16 +58,12 @@ interface StoryAnchorProps {
 }
 const anchorTemplate: Story<StoryAnchorProps> = (
   args,
-  { globals: { theme, locale } }
+  { globals: { locale } }
 ) => {
   const { color } = args
   const text = locale !== 'ko' ? 'Anchor' : args.children
 
-  return theme !== 'notUsed' ? (
-    <Anchor isDark={theme === 'dark'}>{text}</Anchor>
-  ) : (
-    <Anchor style={{ color }}>{text}</Anchor>
-  )
+  return <Anchor custom={css({ color })}>{text}</Anchor>
 }
 
 export const DefaultAnchor = anchorTemplate

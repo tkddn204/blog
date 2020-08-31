@@ -8,9 +8,9 @@ import {
 /**
  * 테마 상태
  *
- * @type 'light' | 'dark'
+ * @type 'default' | 'light' | 'dark'
  */
-export type ThemeState = 'light' | 'dark'
+export type ThemeState = 'default' | 'light' | 'dark'
 
 /**
  * 테마 관련 리듀서 함수를 모은 인터페이스
@@ -21,7 +21,7 @@ interface Reducers extends SliceCaseReducers<ThemeState> {
   change: CaseReducer<ThemeState, PayloadAction<ThemeState>>
 }
 
-const initialState: ThemeState = 'light'
+const initialState: ThemeState = 'default'
 
 /**
  * 테마 슬라이스

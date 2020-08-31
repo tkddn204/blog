@@ -1,31 +1,32 @@
-import React, {FC, useEffect} from 'react'
-import {useDispatch} from 'react-redux'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { StoryGetter, StoryContext } from '@storybook/addons'
+import React, { FC, ReactNode, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import Providers from '../src/Application/Providers'
-import {change} from '../src/Features/theme/themeSlice'
+import { change } from '../src/Features/theme/themeSlice'
 
 export const decorators = [
-  (Story: any, context: any) => {
+  (Story: StoryGetter, context: StoryContext): ReactNode => {
     const WithReduxStory: FC = () => {
-      const {theme} = context.globals
+      const { theme } = context.globals
       const dispatch = useDispatch()
       useEffect(() => {
-        if (theme === 'light' || theme === 'dark') {
-          dispatch(change(theme))
-        }
+        dispatch(change(theme))
       }, [dispatch, theme])
+      /* eslint-disable react/jsx-props-no-spreading */
       return <Story {...context} />
     }
 
     return (
       <Providers>
-        <WithReduxStory/>
+        <WithReduxStory />
       </Providers>
     )
-  }
+  },
 ]
 
 export const parameters = {
-  actions: {argTypesRegex: '^on[A-Z].*'}
+  actions: { argTypesRegex: '^on[A-Z].*' },
 }
 
 export const globalTypes = {
@@ -36,7 +37,7 @@ export const globalTypes = {
     toolbar: {
       icon: 'circlehollow',
       // notUsed -> local value first. if not set local value, using light theme
-      items: ['notUsed', 'light', 'dark'],
+      items: ['default', 'light', 'dark'],
     },
   },
   locale: {
@@ -46,8 +47,8 @@ export const globalTypes = {
     toolbar: {
       icon: 'globe',
       items: [
-        {value: 'ko', right: '🇰🇷', title: '한국어'},
-        {value: 'en', right: '🇺🇸', title: 'English'},
+        { value: 'ko', right: '🇰🇷', title: '한국어' },
+        { value: 'en', right: '🇺🇸', title: 'English' },
       ],
     },
   },

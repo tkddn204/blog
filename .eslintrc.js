@@ -58,7 +58,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['**/*.tsx', '.storybook/*.tsx'],
+      files: ['**/*.tsx'],
       rules: {
         'react/prop-types': 'off',
       },
