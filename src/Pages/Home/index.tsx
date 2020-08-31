@@ -8,7 +8,7 @@ import Logo from '../../Components/Logo'
 import Nav from '../../Components/Nav'
 
 import NavList from '../../Compositions/NavList'
-import PostList from '../../Compositions/PostList/PostList'
+import Index from '../../Compositions/PostList'
 
 const HomeStyle = tw`
   bg-gray-100
@@ -19,11 +19,15 @@ const Home: FC = () => (
     <Header>
       <Logo />
       <NavList>
-        <Nav link="/about">About</Nav>
-        <Nav link="/blog">Blog</Nav>
+        <Nav key="nav-about" link="/about">
+          About
+        </Nav>
+        <Nav key="nav-blog" link="/blog">
+          Blog
+        </Nav>
       </NavList>
     </Header>
-    <PostList />
+    <Index />
     <Footer />
   </Layout>
 )

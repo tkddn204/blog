@@ -5,7 +5,7 @@ import { jsx } from '@emotion/core'
 import useDarkStyle, {
   DarkStyledProps,
   StyleType,
-} from '../../Components/useDarkStyle'
+} from '../../Hooks/useDarkStyle'
 
 const style: StyleType = {
   dark: tw``,

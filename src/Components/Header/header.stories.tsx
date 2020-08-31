@@ -43,8 +43,12 @@ const headerTemplate: Story = () => {
     <Header>
       <Logo />
       <NavList>
-        <Nav link="/about">About</Nav>
-        <Nav link="/blog">Blog</Nav>
+        <Nav key="nav-about" link="/about">
+          About
+        </Nav>
+        <Nav key="nav-blog" link="/blog">
+          Blog
+        </Nav>
       </NavList>
     </Header>
   )

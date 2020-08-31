@@ -2,7 +2,7 @@
 import { SerializedStyles } from '@emotion/css'
 import { css, TwStyle } from 'twin.macro'
 import { useSelector } from 'react-redux'
-import { themeSelector } from '../../Features/Selectors'
+import { themeSelector } from '../Features/Selectors'
 
 export interface StyleType extends TwStyle {
   dark: TwStyle | string

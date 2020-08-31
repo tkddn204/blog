@@ -3,7 +3,10 @@ import { FC } from 'react'
 import { Link, useRouteMatch } from 'react-router-dom'
 import tw from 'twin.macro'
 import { jsx } from '@emotion/core'
-import useDarkStyle, { DarkStyledProps, StyleType } from '../useDarkStyle'
+import useDarkStyle, {
+  DarkStyledProps,
+  StyleType,
+} from '../../Hooks/useDarkStyle'
 
 const style: StyleType = {
   dark: tw`text-white hover:text-green-500`,

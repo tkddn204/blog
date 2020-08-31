@@ -1,13 +1,13 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import Providers from '../../Application/Providers'
-import PostList from './PostList'
+import Index from './index'
 
 test('Should test the Post List Component', () => {
-  const { getByText } = render(
+  const { container } = render(
     <Providers>
-      <PostList />
+      <Index />
     </Providers>
   )
-  expect(getByText('로딩중')).toBeInTheDocument()
+  expect(container).toReturn()
 })

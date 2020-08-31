@@ -4,33 +4,43 @@ import { Meta, Story } from '@storybook/react/types-6-0'
 import { jsx } from '@emotion/core'
 import NavList from './index'
 import DocTemplate from '../../Utils/StorybookDocTemplate'
+import Nav from '../../Components/Nav'
 
 export default {
-  title: 'Components/NavList',
+  title: 'Compositions/NavList',
   component: NavList,
   argTypes: {
     children: {
-      description: '헤더 안에 들어가는 ReactNode',
+      description: '하나 이상의 네비게이션을 포함해야 합니다.',
       type: {
         required: true,
       },
       table: {
         type: {
-          summary: 'ReactNode',
+          summary: 'Nav[]',
         },
         defaultValue: {
           summary: '-',
         },
       },
-      control: 'object',
+      defaultValue: [
+        <Nav key="nav-about" link="/about">
+          About
+        </Nav>,
+        <Nav key="nav-blog" link="/blog">
+          Blog
+        </Nav>,
+      ],
+      control: 'array',
     },
   },
   parameters: {
     docs: {
       page: () =>
         DocTemplate({
-          title: '😎 Header',
-          description: '헤더입니다. 헤더는 `<header>` 태그 컴포넌트입니다.',
+          title: '📝 NavList',
+          description:
+            '네비게이션 리스트입니다. 네비게이션 리스트는 `<nav>` 태그 컴포넌트입니다.',
         }),
     },
   },

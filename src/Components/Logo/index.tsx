@@ -2,7 +2,10 @@
 import { FC } from 'react'
 import tw from 'twin.macro'
 import { jsx } from '@emotion/core'
-import useDarkStyle, { DarkStyledProps, StyleType } from '../useDarkStyle'
+import useDarkStyle, {
+  DarkStyledProps,
+  StyleType,
+} from '../../Hooks/useDarkStyle'
 
 import LogoSVG from './LogoSVG'
 

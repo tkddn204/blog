@@ -5,6 +5,10 @@ module.exports = {
       screens: {
         dark: { raw: '(prefers-color-scheme: dark)' },
       },
+      height: {
+        half: '50%',
+        odds: '75%',
+      },
     },
   },
   variants: {},
