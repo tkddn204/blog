@@ -7,12 +7,13 @@ import useDarkStyle, { DarkStyledProps, StyleType } from '../useDarkStyle'
 import LogoSVG from './LogoSVG'
 
 const style: StyleType = {
-  light: tw`bg-white text-black border-gray-400`,
-  dark: tw`bg-black text-white border-gray-400`,
+  light: tw`bg-white text-black`,
+  dark: tw`bg-black bg-opacity-75 text-white border-none`,
   defaultDark: tw`
     dark:bg-black
+    dark:bg-opacity-75
     dark:text-white
-    dark:border-gray-400
+    dark:border-none
   `,
 }
 

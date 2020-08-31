@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux'
 import { themeSelector } from '../../Features/Selectors'
 
 export interface StyleType extends TwStyle {
-  light: TwStyle | string
   dark: TwStyle | string
   defaultDark: TwStyle | string
 }
@@ -27,7 +26,7 @@ const useDarkStyle: DarkStyledType = (style, addStyleType?, custom?) => {
   const theme = useSelector(themeSelector)
   let themeStyle
   if (theme !== 'default') {
-    themeStyle = theme === 'dark' ? style.dark : style.light
+    themeStyle = theme === 'dark' && style.dark
   } else {
     themeStyle = custom
   }

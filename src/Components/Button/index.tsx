@@ -5,26 +5,29 @@ import { jsx } from '@emotion/core'
 import useDarkStyle, { DarkStyledProps, StyleType } from '../useDarkStyle'
 
 const style: StyleType = {
-  light: tw`bg-white text-black active:bg-blue-400`,
-  dark: tw`bg-black text-white active:bg-pink-400`,
+  dark: tw`bg-black text-white active:bg-pink-600`,
   defaultDark: tw`
     dark:bg-black
     dark:text-white
-    dark:active:bg-pink-400
+    dark:active:bg-pink-600
   `,
 }
 
-const buttonStyle = tw`bg-white
+const buttonStyle = tw`
+    inline-flex items-center justify-center
+    align-middle
+    bg-white
     text-black
     text-base
-    px-5 pb-2
-    border border-solid border-transparent
+    px-5 py-1
+    border border-solid border-gray-300
     outline-none
     cursor-pointer
     rounded-sm
     transition-all duration-150
     hover:(border border-solid shadow)
-    active:bg-blue-400`
+    focus:outline-none
+    active:bg-blue-200`
 
 type Props = DarkStyledProps
 

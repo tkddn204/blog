@@ -10,6 +10,7 @@ import 'firebase/storage'
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
 import { createFirestoreInstance } from 'redux-firestore'
 import { PersistGate } from 'redux-persist/integration/react'
+import { BrowserRouter } from 'react-router-dom'
 import { firebaseConfig, reduxFirebaseConfig } from './FirebaseConfig'
 import { persistor, store } from './Store'
 import LocaleProvider from '../Features/locale/LocaleProvider'
@@ -37,16 +38,18 @@ const Providers: FC = ({ children }) => (
           dispatch={store.dispatch}
           createFirestoreInstance={createFirestoreInstance}
         >
-          <LocaleProvider>
-            <Global
-              styles={css`
-                @tailwind base;
-                @tailwind components;
-                @tailwind utilities;
-              `}
-            />
-            {children}
-          </LocaleProvider>
+          <BrowserRouter>
+            <LocaleProvider>
+              <Global
+                styles={css`
+                  @tailwind base;
+                  @tailwind components;
+                  @tailwind utilities;
+                `}
+              />
+              {children}
+            </LocaleProvider>
+          </BrowserRouter>
         </ReactReduxFirebaseProvider>
       </PersistGate>
     </ReduxProvider>
