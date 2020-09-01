@@ -7,18 +7,23 @@ import Logo from '../../Components/Logo'
 import PostList from '../../Compositions/PostList'
 import Article from '../../Components/Article'
 import RightHeader from '../../Compositions/RightHeader'
+import usePostList from '../../Hooks/usePostList'
 
-const Home: FC = () => (
-  <Layout>
-    <Header>
-      <Logo />
-      <RightHeader />
-    </Header>
-    <Article>
-      <PostList />
-    </Article>
-    <Footer />
-  </Layout>
-)
+const Home: FC = () => {
+  const [postList, fetchState] = usePostList()
+
+  return (
+    <Layout>
+      <Header>
+        <Logo />
+        <RightHeader />
+      </Header>
+      <Article>
+        <PostList postList={postList} fetchState={fetchState} />
+      </Article>
+      <Footer />
+    </Layout>
+  )
+}
 
 export default Home

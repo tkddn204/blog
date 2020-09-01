@@ -2,14 +2,30 @@
 import { ReactNode } from 'react'
 import { Meta, Story } from '@storybook/react/types-6-0'
 import { jsx } from '@emotion/core'
-import PostList, { ContentState } from './index'
+import PostList from './index'
 import DocTemplate from '../../Utils/StorybookDocTemplate'
+import { FetchState, Post } from '../../Types/firestore.schema'
+import { dummyPosts } from '../../__fixtures__/posts'
+import PostItem from './PostItem'
 
 export default {
   title: 'Compositions/PostList',
   component: PostList,
   argTypes: {
-    content: {
+    postList: {
+      description: '포스트 리스트',
+      table: {
+        type: {
+          summary: 'Post[]',
+        },
+        defaultValue: {
+          summary: '[]',
+        },
+      },
+      defaultValue: dummyPosts,
+      control: 'object',
+    },
+    fetchState: {
       description: '로딩 상태 변경',
       table: {
         type: {
@@ -39,12 +55,19 @@ export default {
 } as Meta
 
 interface StoryButtonProps {
-  content: ContentState
+  postList: Post[]
+  fetchState: FetchState
   children: ReactNode
 }
 
 const PostListTemplate: Story<StoryButtonProps> = (args) => {
-  return <PostList content={args.content} />
+  const { postList, fetchState } = args
+  return <PostList postList={postList} fetchState={fetchState} />
 }
 
 export const DefaultPostList = PostListTemplate
+
+export const DefaultPostItem: Story<StoryButtonProps> = (args) => {
+  const { postList } = args
+  return <PostItem post={postList[0]} />
+}

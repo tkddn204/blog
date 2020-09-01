@@ -21,6 +21,7 @@ import {
   getFirebase,
   actionTypes as rrfActionTypes,
   firebaseReducer,
+  ExtendedFirebaseInstance,
 } from 'react-redux-firebase'
 import { constants as rfConstants, firestoreReducer } from 'redux-firestore'
 // import { logger } from 'redux-logger'
@@ -93,6 +94,6 @@ export type RootState = ReturnType<typeof store.getState>
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
   RootState,
-  unknown,
+  () => ExtendedFirebaseInstance,
   Action<string>
 >
