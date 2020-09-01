@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly when there are some texts 1`] = `
+.emotion-0 {
+  --text-opacity: 1;
+  color: rgba(237,100,166,var(--text-opacity));
+}
+
+.emotion-0:hover {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.emotion-0:visited {
+  --text-opacity: 1;
+  color: rgba(102,126,234,var(--text-opacity));
+}
+
+@media (prefers-color-scheme:dark) {
+  .emotion-0 {
+    --text-opacity: 1;
+    color: rgba(254,215,226,var(--text-opacity));
+  }
+
+  .emotion-0:visited {
+    --text-opacity: 1;
+    color: rgba(195,218,254,var(--text-opacity));
+  }
+}
+
+<div>
+  <a
+    class="emotion-0"
+    href="/"
+  >
+    텍스트
+  </a>
+</div>
+`;

@@ -1,6 +1,8 @@
 {
   "short_name": "라페 블로그",
   "name": "라페(Rightpair) 블로그입니다.",
+  "keywords": ["tkddn204","rightpair","blog", "블로그"],
+  "description": "tkddn204(Rightpair), 라페의 블로그입니다. 웹 개발 관련 글을 주로 포스팅합니다.",
   "icons": [
     {
       "src": "favicon.ico",
