@@ -18,7 +18,7 @@ export type LocaleState = 'ko' | 'en'
  * @interface
  */
 interface Reducers extends SliceCaseReducers<LocaleState> {
-  change: CaseReducer<LocaleState, PayloadAction<LocaleState>>
+  changeLocale: CaseReducer<LocaleState, PayloadAction<LocaleState>>
 }
 
 const initialState: LocaleState = 'ko'
@@ -31,7 +31,7 @@ export const localeSlice = createSlice<LocaleState, Reducers>({
   name: 'locale',
   initialState,
   reducers: {
-    change: (state, action) => {
+    changeLocale: (state, action) => {
       // eslint-disable-next-line no-param-reassign
       state = action.payload
       return state
@@ -39,5 +39,5 @@ export const localeSlice = createSlice<LocaleState, Reducers>({
   },
 })
 
-export const { change } = localeSlice.actions
+export const { changeLocale } = localeSlice.actions
 export default localeSlice.reducer

@@ -1,6 +1,6 @@
 import React, { FC, ReactNode, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { change } from './themeSlice'
+import { changeTheme } from './themeSlice'
 import { themeSelector } from '../Selectors'
 
 type Props = {
@@ -13,7 +13,7 @@ const SelectThemeProvider: FC<Props> = ({ children }: Props) => {
 
   useEffect(() => {
     if (theme !== 'dark') {
-      dispatch(change('dark'))
+      dispatch(changeTheme('dark'))
     }
   }, [theme, dispatch])
 

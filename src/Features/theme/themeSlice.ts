@@ -18,7 +18,7 @@ export type ThemeState = 'default' | 'light' | 'dark'
  * @interface
  */
 interface Reducers extends SliceCaseReducers<ThemeState> {
-  change: CaseReducer<ThemeState, PayloadAction<ThemeState>>
+  changeTheme: CaseReducer<ThemeState, PayloadAction<ThemeState>>
 }
 
 const initialState: ThemeState = 'default'
@@ -31,7 +31,7 @@ export const themeSlice = createSlice<ThemeState, Reducers>({
   name: 'theme',
   initialState,
   reducers: {
-    change: (state, action) => {
+    changeTheme: (state, action) => {
       // eslint-disable-next-line no-param-reassign
       state = action.payload
       return state
@@ -39,5 +39,5 @@ export const themeSlice = createSlice<ThemeState, Reducers>({
   },
 })
 
-export const { change } = themeSlice.actions
+export const { changeTheme } = themeSlice.actions
 export default themeSlice.reducer

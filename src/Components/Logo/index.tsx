@@ -4,12 +4,12 @@ import tw from 'twin.macro'
 import { jsx } from '@emotion/core'
 import useDarkStyle, {
   DarkStyledProps,
-  StyleType,
+  DarkStyleType,
 } from '../../Hooks/useDarkStyle'
 
 import LogoSVG from './LogoSVG'
 
-const style: StyleType = {
+const style: DarkStyleType = {
   light: tw`bg-white text-black`,
   dark: tw`bg-black bg-opacity-75 text-white border-none`,
   defaultDark: tw`

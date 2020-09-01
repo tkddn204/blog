@@ -4,15 +4,14 @@ import { jsx } from '@emotion/core'
 import Header from '.'
 import DocTemplate from '../../Utils/StorybookDocTemplate'
 import Logo from '../Logo'
-import NavList from '../../Compositions/NavList'
-import Nav from '../Nav'
+import RightHeader from '../../Compositions/RightHeader'
 
 export default {
   title: 'Components/Header',
   component: Header,
   argTypes: {
     children: {
-      description: '헤더 안에 들어가는 ReactNode',
+      description: '헤더 안에 들어가는 하위 노드들입니다.',
       type: {
         required: true,
       },
@@ -24,6 +23,7 @@ export default {
           summary: '-',
         },
       },
+      defaultValue: [<Logo />, <RightHeader />],
       control: 'object',
     },
   },
@@ -38,20 +38,8 @@ export default {
   },
 } as Meta
 
-const headerTemplate: Story = () => {
-  return (
-    <Header>
-      <Logo />
-      <NavList>
-        <Nav key="nav-about" link="/about">
-          About
-        </Nav>
-        <Nav key="nav-blog" link="/blog">
-          Blog
-        </Nav>
-      </NavList>
-    </Header>
-  )
+const headerTemplate: Story = (args) => {
+  return <Header>{args.children}</Header>
 }
 
 export const DefaultHeader = headerTemplate

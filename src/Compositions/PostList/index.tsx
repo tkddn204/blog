@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 import { isEmpty, isLoaded, useFirestoreConnect } from 'react-redux-firebase'
 import useDarkStyle, {
   DarkStyledProps,
-  StyleType,
+  DarkStyleType,
 } from '../../Hooks/useDarkStyle'
 import { RootState } from '../../Application/Store'
 import Loading from '../../Components/Loading'
@@ -14,7 +14,7 @@ import Loading from '../../Components/Loading'
 const query = () => [{ collection: 'post', limitTo: 10 }]
 const selector = ({ firestore }: RootState) => firestore.ordered.post
 
-const style: StyleType = {
+const style: DarkStyleType = {
   dark: tw``,
   defaultDark: tw``,
 }

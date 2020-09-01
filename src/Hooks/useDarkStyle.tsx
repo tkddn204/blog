@@ -4,7 +4,7 @@ import { css, TwStyle } from 'twin.macro'
 import { useSelector } from 'react-redux'
 import { themeSelector } from '../Features/Selectors'
 
-export interface StyleType extends TwStyle {
+export interface DarkStyleType extends TwStyle {
   dark: TwStyle | string
   defaultDark: TwStyle | string
 }
@@ -16,7 +16,7 @@ export interface DarkStyledProps {
 
 interface DarkStyledType {
   (
-    style: StyleType,
+    style: DarkStyleType,
     addStyleType?: string[],
     custom?: SerializedStyles
   ): SerializedStyles

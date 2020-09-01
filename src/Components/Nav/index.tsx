@@ -5,10 +5,10 @@ import tw from 'twin.macro'
 import { jsx } from '@emotion/core'
 import useDarkStyle, {
   DarkStyledProps,
-  StyleType,
+  DarkStyleType,
 } from '../../Hooks/useDarkStyle'
 
-const style: StyleType = {
+const style: DarkStyleType = {
   dark: tw`text-white hover:text-green-500`,
   defaultDark: tw`
     dark:text-white dark:bg-black
@@ -20,6 +20,7 @@ const navStyle = tw`
   mr-4
   text-black
   text-base
+  last:mr-0
   hover:text-green-500
   transition-all duration-150
 `

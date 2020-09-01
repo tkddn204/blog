@@ -4,11 +4,11 @@ import tw from 'twin.macro'
 import { jsx } from '@emotion/core'
 import useDarkStyle, {
   DarkStyledProps,
-  StyleType,
+  DarkStyleType,
 } from '../../Hooks/useDarkStyle'
 
-const style: StyleType = {
-  light: tw`bg-white bg-opacity-25`,
+const style: DarkStyleType = {
+  light: tw`bg-gray-200 bg-opacity-25`,
   dark: tw`bg-black bg-opacity-75`,
   defaultDark: tw`
     dark:bg-black dark:bg-opacity-75
@@ -18,9 +18,10 @@ const style: StyleType = {
 const headerStyle = tw`
   flex items-center justify-between
   h-16
-  p-5
-  bg-white bg-opacity-25
+  px-5 mt-2
+  bg-gray-200 bg-opacity-25
   rounded-full
+  shadow
   transition-all duration-150
 `
 

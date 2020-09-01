@@ -5,10 +5,10 @@ import { jsx } from '@emotion/core'
 import { motion } from 'framer-motion'
 import useDarkStyle, {
   DarkStyledProps,
-  StyleType,
+  DarkStyleType,
 } from '../../Hooks/useDarkStyle'
 
-const style: StyleType = {
+const style: DarkStyleType = {
   light: tw``,
   dark: tw``,
   defaultDark: tw``,

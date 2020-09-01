@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { FC } from 'react'
-import { Link } from 'react-router-dom'
 import tw from 'twin.macro'
 import { jsx } from '@emotion/core'
 import useDarkStyle, {
@@ -19,23 +18,16 @@ const style: DarkStyleType = {
   `,
 }
 
-const AnchorStyle = tw(Link)`
-  text-pink-500
-  hover:underline
-  visited:text-indigo-500
+const articleStyle = tw`
+  flex flex-col items-center justify-center
+  my-5
 `
 
-interface Props extends DarkStyledProps {
-  link?: string
-}
+type Props = DarkStyledProps
 
-const Anchor: FC<Props> = ({ link, addStyleType, children, custom }) => {
+const Article: FC<Props> = ({ addStyleType, children, custom }) => {
   const darkStyle = useDarkStyle(style, addStyleType, custom)
-  return (
-    <AnchorStyle to={link || '/'} css={darkStyle}>
-      {children}
-    </AnchorStyle>
-  )
+  return <article css={[articleStyle, darkStyle]}>{children}</article>
 }
 
-export default Anchor
+export default Article

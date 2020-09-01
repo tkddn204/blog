@@ -84,7 +84,7 @@
     "no-import-side-effect": {"severity": "warning"},
 
     // Warn when variables are defined with var. Var has subtle meaning that can lead to bugs. Strongly prefer const for
-    // most values and let for values that will change.
+    // most values and let for values that will changeTheme.
     "no-var-keyword": {"severity": "warning"},
 
     // Prefer === and !== over == and !=. The latter operators support overloads that are often accidental.
@@ -104,7 +104,7 @@
     // Warns if function overloads could be unified into a single function with optional or rest parameters.
     "unified-signatures": {"severity": "warning"},
 
-    // Prefer const for values that will not change. This better documents code.
+    // Prefer const for values that will not changeTheme. This better documents code.
     "prefer-const": {"severity": "warning"},
 
     // Multi-line object literals and function calls should have a trailing comma. This helps avoid merge conflicts.
