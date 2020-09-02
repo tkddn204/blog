@@ -44,7 +44,7 @@ interface StoryToggleDarkProps {
 const ToggleDarkTemplate: Story<StoryToggleDarkProps> = (args) => {
   const { color } = args
 
-  return <ToggleDark custom={css({ color })} />
+  return <ToggleDark customTheme={css({ color })} />
 }
 
 export const DefaultToggleDark = ToggleDarkTemplate

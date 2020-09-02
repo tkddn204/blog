@@ -25,8 +25,8 @@ const articleStyle = tw`
 
 type Props = DarkStyledProps
 
-const Article: FC<Props> = ({ addStyleType, children, custom }) => {
-  const darkStyle = useDarkStyle(style, addStyleType, custom)
+const Article: FC<Props> = ({ addStyleType, children, customTheme }) => {
+  const darkStyle = useDarkStyle(style, addStyleType, customTheme)
   return <article css={[articleStyle, darkStyle]}>{children}</article>
 }
 

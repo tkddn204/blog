@@ -29,8 +29,8 @@ interface Props extends DarkStyledProps {
   link?: string
 }
 
-const Anchor: FC<Props> = ({ link, addStyleType, children, custom }) => {
-  const darkStyle = useDarkStyle(style, addStyleType, custom)
+const Anchor: FC<Props> = ({ link, addStyleType, children, customTheme }) => {
+  const darkStyle = useDarkStyle(style, addStyleType, customTheme)
   return (
     <AnchorStyle to={link || '/'} css={darkStyle}>
       {children}

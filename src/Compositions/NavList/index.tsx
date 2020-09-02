@@ -19,8 +19,8 @@ const navListStyle = tw`
 
 type Props = DarkStyledProps
 
-const NavList: FC<Props> = ({ addStyleType, children, custom }) => {
-  const darkStyle = useDarkStyle(style, addStyleType, custom)
+const NavList: FC<Props> = ({ addStyleType, children, customTheme }) => {
+  const darkStyle = useDarkStyle(style, addStyleType, customTheme)
   return <nav css={[navListStyle, darkStyle]}>{children}</nav>
 }
 

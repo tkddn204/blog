@@ -38,7 +38,7 @@ export default {
     docs: {
       page: () =>
         DocTemplate({
-          title: '📝 NavList',
+          title: '📪 NavList',
           description:
             '네비게이션 리스트입니다. 네비게이션 리스트는 `<nav>` 태그 컴포넌트입니다.',
         }),

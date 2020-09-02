@@ -24,8 +24,8 @@ const LayoutStyle = tw`
 
 type Props = DarkStyledProps
 
-const Layout: FC<Props> = ({ addStyleType, children, custom }) => {
-  const darkStyle = useDarkStyle(style, addStyleType, custom)
+const Layout: FC<Props> = ({ addStyleType, children, customTheme }) => {
+  const darkStyle = useDarkStyle(style, addStyleType, customTheme)
   return <div css={[LayoutStyle, darkStyle]}>{children}</div>
 }
 

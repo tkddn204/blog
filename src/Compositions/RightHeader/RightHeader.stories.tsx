@@ -11,7 +11,7 @@ export default {
     docs: {
       page: () =>
         DocTemplate({
-          title: '👉 RightHeader',
+          title: '🤜 RightHeader',
           description:
             '헤더의 오른쪽 부분입니다. `<NavList>`와 `<ToggleDark>`로 구성되어 있습니다.',
         }),

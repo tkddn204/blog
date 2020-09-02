@@ -4,13 +4,13 @@ import Home from '.'
 import DocTemplate from '../../Utils/StorybookDocTemplate'
 
 export default {
-  title: 'Pages/Home',
+  title: 'Pages/Blog',
   component: Home,
   parameters: {
     docs: {
       page: () =>
         DocTemplate({
-          title: '🏠 Home',
+          title: '🏠 Blog',
           description: '메인 화면입니다.',
         }),
     },

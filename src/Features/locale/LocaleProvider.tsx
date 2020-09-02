@@ -1,6 +1,7 @@
 import React, { FC, ReactNode, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { I18nextProvider } from 'react-i18next'
+import moment from 'moment'
 import { localeSelector } from '../Selectors'
 import i18next from '../../Application/I18nConfig'
 
@@ -12,7 +13,7 @@ const LocaleProvider: FC<Props> = ({ children }: Props) => {
   const locale = useSelector(localeSelector)
   useEffect(() => {
     if (i18next.language !== locale) {
-      i18next.changeLanguage(locale).then()
+      i18next.changeLanguage(locale).then(() => moment.locale(locale))
     }
   }, [locale])
 

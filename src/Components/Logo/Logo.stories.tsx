@@ -44,7 +44,7 @@ interface StoryLogoProps {
 const logoTemplate: Story<StoryLogoProps> = (args) => {
   const { color } = args
 
-  return <Logo custom={css({ color })} />
+  return <Logo customTheme={css({ color })} />
 }
 
 export const DefaultLogo = logoTemplate

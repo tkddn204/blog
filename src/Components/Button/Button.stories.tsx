@@ -65,7 +65,7 @@ const buttonTemplate: Story<StoryButtonProps> = (
   const { color } = args
   const text = locale !== 'ko' ? 'Button' : args.children
 
-  return <Button custom={css({ color })}>{text}</Button>
+  return <Button customTheme={css({ color })}>{text}</Button>
 }
 
 export const DefaultButton = buttonTemplate

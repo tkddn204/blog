@@ -1,5 +1,6 @@
 {
   "title": "라페 블로그",
   "description.short": "라페(rightpair)의 블로그입니다.",
-  "description.long": "프런트 개발자를 지향하는 라페(rightpair)의 블로그입니다. 이것저것 적어서 올립니다."
+  "description.long": "프런트 개발자를 지향하는 라페(rightpair)의 블로그입니다. 이것저것 적어서 올립니다.",
+  "footer": "Copyright ⓒ Rightpair, 2020"
 }

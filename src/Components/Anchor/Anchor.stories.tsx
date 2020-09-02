@@ -63,7 +63,7 @@ const anchorTemplate: Story<StoryAnchorProps> = (
   const { color } = args
   const text = locale !== 'ko' ? 'Anchor' : args.children
 
-  return <Anchor custom={css({ color })}>{text}</Anchor>
+  return <Anchor customTheme={css({ color })}>{text}</Anchor>
 }
 
 export const DefaultAnchor = anchorTemplate

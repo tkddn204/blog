@@ -22,15 +22,10 @@ const postListStyle = css`
   `}
 `
 
-const EmptyElement = <article>텅 비었음</article>
-const LoadedElement = (postList: Post[]) => (
-  <article>
-    {postList.map((post: Post) => (
-      <PostItem key={post.id} post={post} />
-    ))}
-  </article>
-)
-const LoadingElement = <Loading key="loading" />
+const EmptyElement = '텅 비었음'
+const LoadedElement = (postList: Post[]) =>
+  postList.map((post: Post) => <PostItem key={post.id} post={post} />)
+const LoadingElement = <Loading />
 
 interface Props extends DarkStyledProps {
   postList: Post[]
@@ -42,9 +37,9 @@ const PostList: FC<Props> = ({
   postList,
   fetchState,
   addStyleType,
-  custom,
+  customTheme,
 }) => {
-  const darkStyle = useDarkStyle(style, addStyleType, custom)
+  const darkStyle = useDarkStyle(style, addStyleType, customTheme)
 
   let Content = null
   switch (fetchState) {
@@ -58,7 +53,11 @@ const PostList: FC<Props> = ({
       Content = LoadingElement
   }
 
-  return <section css={[postListStyle, darkStyle]}>{Content}</section>
+  return (
+    <section css={[postListStyle, darkStyle]}>
+      <article>{Content}</article>
+    </section>
+  )
 }
 
 export default PostList

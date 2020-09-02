@@ -79,7 +79,7 @@ const NavTemplate: Story<StoryNavProps> = (args, { globals: { locale } }) => {
   const text = locale !== 'ko' ? 'Nav' : args.children
 
   return (
-    <Nav link={link} custom={css({ color })}>
+    <Nav link={link} customTheme={css({ color })}>
       {text}
     </Nav>
   )

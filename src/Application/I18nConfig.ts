@@ -7,15 +7,16 @@ i18next
   .use(initReactI18next)
   .init({
     resources: {
-      ko,
-      en,
+      ko: {
+        translation: ko,
+      },
+      en: {
+        translation: en,
+      },
     },
     lng: 'ko',
     fallbackLng: 'en',
     debug: process.env.NODE_ENV !== 'production',
-    interpolation: {
-      escapeValue: false,
-    },
   })
   .then()
 

@@ -3,8 +3,8 @@ import { Meta, Story } from '@storybook/react/types-6-0'
 import { jsx } from '@emotion/core'
 import Header from '.'
 import DocTemplate from '../../Utils/StorybookDocTemplate'
-import Logo from '../Logo'
 import RightHeader from '../../Compositions/RightHeader'
+import LeftHeader from '../../Compositions/LeftHeader'
 
 export default {
   title: 'Components/Header',
@@ -23,7 +23,7 @@ export default {
           summary: '-',
         },
       },
-      defaultValue: [<Logo />, <RightHeader />],
+      defaultValue: [<LeftHeader />, <RightHeader />],
       control: 'object',
     },
   },

@@ -2,10 +2,10 @@ import React, { FC } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group'
 
-import Home from '../Pages/Home'
+import Blog from '../Pages/Home'
 
 export const routes = [
-  { path: '/', Component: Home, name: 'Home' },
+  { path: '/', Component: Blog, name: 'Home' },
   // { path: '/about', Component: About },
 ]
 

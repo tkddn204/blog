@@ -32,8 +32,8 @@ interface Props extends DarkStyledProps {
   link: string
 }
 
-const Nav: FC<Props> = ({ link, addStyleType, children, custom }) => {
-  const darkStyle = useDarkStyle(style, addStyleType, custom)
+const Nav: FC<Props> = ({ link, addStyleType, children, customTheme }) => {
+  const darkStyle = useDarkStyle(style, addStyleType, customTheme)
   const match = useRouteMatch(link)
   return (
     <Link to={link} css={[navStyle, darkStyle, match && matchLinkStyle]}>

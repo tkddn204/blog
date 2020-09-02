@@ -9,6 +9,10 @@ module.exports = {
         half: '50%',
         odds: '75%',
       },
+      inset: {
+        16: '4rem',
+        '-16': '-4rem',
+      },
     },
   },
   variants: {},

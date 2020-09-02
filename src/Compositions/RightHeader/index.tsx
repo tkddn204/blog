@@ -32,8 +32,8 @@ const rightHeaderStyle = css`
 
 type Props = DarkStyledProps
 
-const RightHeader: FC<Props> = ({ addStyleType, custom }) => {
-  const darkStyle = useDarkStyle(style, addStyleType, custom)
+const RightHeader: FC<Props> = ({ addStyleType, customTheme }) => {
+  const darkStyle = useDarkStyle(style, addStyleType, customTheme)
   return (
     <div css={rightHeaderStyle}>
       <NavList>

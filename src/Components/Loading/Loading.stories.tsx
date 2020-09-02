@@ -28,7 +28,7 @@ interface StoryLoadingProps {
 const LoadingTemplate: Story<StoryLoadingProps> = (args) => {
   const { color } = args
 
-  return <Loading custom={css({ color })} />
+  return <Loading customTheme={css({ color })} />
 }
 
 export const DefaultLoading = LoadingTemplate

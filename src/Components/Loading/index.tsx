@@ -9,7 +9,6 @@ import useDarkStyle, {
 } from '../../Hooks/useDarkStyle'
 
 const style: DarkStyleType = {
-  light: tw``,
   dark: tw``,
   defaultDark: tw``,
 }
@@ -29,14 +28,15 @@ const Box = tw(motion.div)`
 
 type Props = DarkStyledProps
 
-const Loading: FC<Props> = ({ addStyleType, custom }) => {
-  const darkStyle = useDarkStyle(style, addStyleType, custom)
+const Loading: FC<Props> = ({ addStyleType, customTheme }) => {
+  const darkStyle = useDarkStyle(style, addStyleType, customTheme)
   return (
     <div css={[LoadingContainerStyle, darkStyle]}>
       {[tw`bg-green-200`, tw`bg-green-400`, tw`bg-green-600`].map(
         (boxColor: TwStyle, index: number) => {
           return (
             <Box
+              key={Math.random()}
               animate={{
                 scaleY: [0.8, 1, 0.8],
               }}

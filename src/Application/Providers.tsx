@@ -13,7 +13,9 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { BrowserRouter } from 'react-router-dom'
 import { firebaseConfig, reduxFirebaseConfig } from './FirebaseConfig'
 import { persistor, store } from './Store'
-import LocaleProvider from '../Features/locale/LocaleProvider'
+
+import './I18nConfig'
+// import LocaleProvider from '../Features/locale/LocaleProvider'
 // import SelectThemeProvider from '../Features/theme/SelectThemeProvider'
 
 // Initialize Firebase
@@ -39,16 +41,14 @@ const Providers: FC = ({ children }) => (
           createFirestoreInstance={createFirestoreInstance}
         >
           <BrowserRouter>
-            <LocaleProvider>
-              <Global
-                styles={css`
-                  @tailwind base;
-                  @tailwind components;
-                  @tailwind utilities;
-                `}
-              />
-              {children}
-            </LocaleProvider>
+            <Global
+              styles={css`
+                @tailwind base;
+                @tailwind components;
+                @tailwind utilities;
+              `}
+            />
+            {children}
           </BrowserRouter>
         </ReactReduxFirebaseProvider>
       </PersistGate>

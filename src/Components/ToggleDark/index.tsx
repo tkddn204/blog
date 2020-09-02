@@ -30,8 +30,8 @@ const ToggleDarkStyle = tw`
 
 type Props = DarkStyledProps
 
-const ToggleDark: FC<Props> = ({ addStyleType, custom }) => {
-  const darkStyle = useDarkStyle(style, addStyleType, custom)
+const ToggleDark: FC<Props> = ({ addStyleType, customTheme }) => {
+  const darkStyle = useDarkStyle(style, addStyleType, customTheme)
   const dispatch = useDispatch()
 
   const theme = useSelector(themeSelector)

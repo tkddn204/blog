@@ -4,7 +4,6 @@ import React, { FC, ReactNode, useEffect } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import Providers from '../src/Application/Providers'
 import { changeTheme } from '../src/Features/theme/themeSlice'
-import {themeSelector} from "../src/Features/Selectors";
 
 export const decorators = [
   (Story: StoryGetter, context: StoryContext): ReactNode => {

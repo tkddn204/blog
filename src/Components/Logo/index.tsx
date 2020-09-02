@@ -10,7 +10,6 @@ import useDarkStyle, {
 import LogoSVG from './LogoSVG'
 
 const style: DarkStyleType = {
-  light: tw`bg-white text-black`,
   dark: tw`bg-black bg-opacity-75 text-white border-none`,
   defaultDark: tw`
     dark:bg-black
@@ -33,10 +32,11 @@ const LogoContainerStyle = tw`
 
 type Props = DarkStyledProps
 
-const Logo: FC<Props> = ({ addStyleType, custom }) => {
-  const darkStyle = useDarkStyle(style, addStyleType, custom)
+const Logo: FC<Props> = ({ addStyleType, customTheme, className }) => {
+  const darkStyle = useDarkStyle(style, addStyleType, customTheme)
+
   return (
-    <div css={[LogoContainerStyle, darkStyle]}>
+    <div css={[LogoContainerStyle, darkStyle]} className={className}>
       <LogoSVG />
     </div>
   )

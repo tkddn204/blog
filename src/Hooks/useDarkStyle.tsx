@@ -10,8 +10,9 @@ export interface DarkStyleType extends TwStyle {
 }
 
 export interface DarkStyledProps {
-  custom?: SerializedStyles
+  customTheme?: SerializedStyles
   addStyleType?: string[]
+  className?: string
 }
 
 interface DarkStyledType {
@@ -33,14 +34,12 @@ const useDarkStyle: DarkStyledType = (style, addStyleType?, custom?) => {
 
   const addStyles =
     !!addStyleType &&
-    addStyleType
-      .map((styleType) => {
-        if (!style[styleType]) {
-          throw new Error(`style '${styleType}' not specified`)
-        }
-        return style[styleType]
-      })
-      .join(' ')
+    addStyleType.map((styleType) => {
+      if (!style[styleType]) {
+        throw new Error(`style '${styleType}' not specified`)
+      }
+      return style[styleType]
+    })
 
   return css`
     ${themeStyle} ${addStyles} ${style.defaultDark};
