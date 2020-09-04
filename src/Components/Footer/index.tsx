@@ -15,7 +15,6 @@ const style: DarkStyleType = {
 }
 
 const headerStyle = tw`
-  absolute bottom-0
   flex items-center justify-center
   w-full
   my-5

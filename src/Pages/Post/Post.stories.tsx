@@ -1,20 +1,20 @@
 import React from 'react'
 import { Meta, Story } from '@storybook/react/types-6-0'
-import Home from '.'
+import Post from '.'
 import DocTemplate from '../../Utils/StorybookDocTemplate'
 
 export default {
-  title: 'Pages/Blog',
-  component: Home,
+  title: 'Pages/Post',
+  component: Post,
   parameters: {
     docs: {
       page: () =>
         DocTemplate({
-          title: '🏠 Blog',
+          title: '🏠 Post',
           description: '메인 화면입니다.',
         }),
     },
   },
 } as Meta
 
-export const DefaultHome: Story = () => <Home />
+export const DefaultPost: Story = () => <Post />

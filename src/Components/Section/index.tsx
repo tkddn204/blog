@@ -8,24 +8,18 @@ import useDarkStyle, {
 } from '../../Hooks/useDarkStyle'
 
 const style: DarkStyleType = {
-  dark: tw`
-    text-pink-200
-    visited:text-indigo-200
-  `,
-  defaultDark: tw`
-    dark:text-pink-200
-    dark:visited:text-indigo-200
-  `,
+  dark: tw``,
+  defaultDark: tw``,
 }
 
-const articleStyle = tw`
+const SectionStyle = tw`
   flex flex-col
-  my-5
+  bg-transparent my-3
 `
 
 type Props = DarkStyledProps
 
-const Article: FC<Props> = ({
+const Section: FC<Props> = ({
   addStyleType,
   children,
   customTheme,
@@ -33,10 +27,10 @@ const Article: FC<Props> = ({
 }) => {
   const darkStyle = useDarkStyle(style, addStyleType, customTheme)
   return (
-    <article className={className} css={[articleStyle, darkStyle]}>
+    <section css={[SectionStyle, darkStyle]} className={className}>
       {children}
-    </article>
+    </section>
   )
 }
 
-export default Article
+export default Section

@@ -2,15 +2,15 @@
 import { ReactNode } from 'react'
 import { jsx } from '@emotion/core'
 import { Meta, Story } from '@storybook/react/types-6-0'
-import Article from '.'
+import Section from '.'
 import DocTemplate from '../../Utils/StorybookDocTemplate'
 
 export default {
-  title: 'Components/Article',
-  component: Article,
+  title: 'Components/Section',
+  component: Section,
   argTypes: {
     children: {
-      description: '아티클 내부에 들어가는 컴포넌트입니다.',
+      description: '섹션 내부에 들어가는 컴포넌트입니다.',
       type: {
         required: true,
       },
@@ -22,7 +22,7 @@ export default {
           summary: '-',
         },
       },
-      defaultValue: '기본 아티클',
+      defaultValue: '기본 섹션',
       control: 'text',
     },
   },
@@ -30,24 +30,23 @@ export default {
     docs: {
       page: () =>
         DocTemplate({
-          title: '📖 Article',
-          description:
-            '아티클입니다. 아티클은 `<article>` 태그 컴포넌트입니다.',
+          title: '📖 Section',
+          description: '섹션입니다. 섹션은 `<Section>` 태그 컴포넌트입니다.',
         }),
     },
   },
 } as Meta
 
-interface StoryArticleProps {
+interface StorySectionProps {
   children: ReactNode
 }
-const ArticleTemplate: Story<StoryArticleProps> = (
+const SectionTemplate: Story<StorySectionProps> = (
   args,
   { globals: { locale } }
 ) => {
-  const text = locale !== 'ko' ? 'Article' : args.children
+  const text = locale !== 'ko' ? 'Section' : args.children
 
-  return <Article>{text}</Article>
+  return <Section>{text}</Section>
 }
 
-export const DefaultArticle = ArticleTemplate
+export const DefaultSection = SectionTemplate

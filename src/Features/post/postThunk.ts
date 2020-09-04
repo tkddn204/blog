@@ -3,9 +3,10 @@ import firebase from 'firebase/app'
 import { AppThunk } from '../../Application/Store'
 import { Post } from '../../Types/firestore.schema'
 
-export const addPost = (newPost: Post, postContent: string): AppThunk => async (
-  dispatch
-): Promise<void> => {
+export const addPost = (
+  newPost: Partial<Post>,
+  postContent: string
+): AppThunk => async (dispatch): Promise<void> => {
   try {
     const newPostRef = firebase.firestore().collection('post').doc()
     const { id: postId } = newPostRef
@@ -13,7 +14,7 @@ export const addPost = (newPost: Post, postContent: string): AppThunk => async (
     await newPostRef.set({
       ...newPost,
       id: postId,
-      summary: postContent.substring(0, 100),
+      summary: newPost.summary ? newPost.summary : postContent.substr(0, 100),
       createdDate: now,
       modifiedDate: now,
     })

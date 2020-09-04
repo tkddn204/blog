@@ -2,21 +2,20 @@
 import { ReactNode } from 'react'
 import { Meta, Story } from '@storybook/react/types-6-0'
 import { jsx } from '@emotion/core'
-import PostList from './index'
+import PostEditor from '.'
 import DocTemplate from '../../Utils/StorybookDocTemplate'
-import { FetchState, Post } from '../../Types/firestore.schema'
+import { FetchState, Post as PostType } from '../../Types/firestore.schema'
 import { dummyPosts } from '../../__fixtures__/posts'
-import PostItem from './PostItem'
 
 export default {
-  title: 'Compositions/PostList',
-  component: PostList,
+  title: 'Compositions/PostEditor',
+  component: PostEditor,
   argTypes: {
-    postList: {
+    Post: {
       description: '포스트 리스트',
       table: {
         type: {
-          summary: 'PostView[]',
+          summary: 'PostEditor[]',
         },
         defaultValue: {
           summary: '[]',
@@ -46,7 +45,7 @@ export default {
     docs: {
       page: () =>
         DocTemplate({
-          title: '📝 PostList',
+          title: '📝 Index',
           description:
             '포스트 리스트입니다. 포스트 리스트는 `<section>` 태그 컴포넌트입니다.',
         }),
@@ -55,19 +54,14 @@ export default {
 } as Meta
 
 interface StoryButtonProps {
-  postList: Post[]
+  Post: PostType
   fetchState: FetchState
   children: ReactNode
 }
 
-const PostListTemplate: Story<StoryButtonProps> = (args) => {
-  const { postList, fetchState } = args
-  return <PostList postList={postList} fetchState={fetchState} />
+const PostEditorTemplate: Story<StoryButtonProps> = () => {
+  // const { Post, fetchState } = args
+  return <PostEditor />
 }
 
-export const DefaultPostList = PostListTemplate
-
-export const DefaultPostItem: Story<StoryButtonProps> = (args) => {
-  const { postList } = args
-  return <PostItem post={postList[0]} />
-}
+export const DefaultPostEditor = PostEditorTemplate

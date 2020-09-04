@@ -1,7 +1,8 @@
 /** @jsx jsx */
 import { FC } from 'react'
 import tw from 'twin.macro'
-import { css, jsx } from '@emotion/core'
+import { jsx, css } from '@emotion/core'
+import { Link } from 'react-router-dom'
 import useDarkStyle, {
   DarkStyledProps,
   DarkStyleType,
@@ -9,29 +10,21 @@ import useDarkStyle, {
 import Loading from '../../Components/Loading'
 import { FetchState, Post } from '../../Types/firestore.schema'
 import PostItem from './PostItem'
+import Article from '../../Components/Article'
 
 const style: DarkStyleType = {
   dark: tw``,
   defaultDark: tw``,
 }
 
-const postListStyle = css`
-  ${tw`
-    flex flex-col items-center justify-center
-    bg-transparent
-  `}
-`
-
-const EmptyElement = '텅 비었음'
-const LoadedElement = (postList: Post[]) =>
-  postList.map((post: Post) => <PostItem key={post.id} post={post} />)
-const LoadingElement = <Loading />
-
 interface Props extends DarkStyledProps {
   postList: Post[]
   fetchState: FetchState
-  testFetchState?: FetchState
 }
+
+const postItemLink = css`
+  ${tw`w-full`}
+`
 
 const PostList: FC<Props> = ({
   postList,
@@ -44,20 +37,20 @@ const PostList: FC<Props> = ({
   let Content = null
   switch (fetchState) {
     case FetchState.loaded:
-      Content = LoadedElement(postList)
+      Content = postList.map((post: Post) => (
+        <Link to={`/post/${post.id}`} css={postItemLink}>
+          <PostItem key={post.id} post={post} />
+        </Link>
+      ))
       break
     case FetchState.empty:
-      Content = EmptyElement
+      Content = '텅 비었음'
       break
     default:
-      Content = LoadingElement
+      Content = <Loading />
   }
 
-  return (
-    <section css={[postListStyle, darkStyle]}>
-      <article>{Content}</article>
-    </section>
-  )
+  return <Article css={darkStyle}>{Content}</Article>
 }
 
 export default PostList

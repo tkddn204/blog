@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { FC, MouseEvent } from 'react'
+import { FC, HTMLProps } from 'react'
 import tw from 'twin.macro'
 import { jsx } from '@emotion/core'
 import useDarkStyle, {
@@ -35,9 +35,7 @@ const buttonStyle = tw`
     focus:outline-none
     active:bg-blue-200`
 
-interface Props extends DarkStyledProps {
-  onClick?: (event: MouseEvent<HTMLButtonElement>) => void
-}
+interface Props extends DarkStyledProps, HTMLProps<HTMLButtonElement> {}
 
 const Button: FC<Props> = ({
   addStyleType,
@@ -48,6 +46,26 @@ const Button: FC<Props> = ({
   const darkStyle = useDarkStyle(style, addStyleType, customTheme)
   return (
     <button type="button" css={[buttonStyle, darkStyle]} onClick={onClick}>
+      {children}
+    </button>
+  )
+}
+
+export const SubmitTypeButton: FC<Props> = ({
+  addStyleType,
+  children,
+  customTheme,
+  onClick,
+  ref,
+}) => {
+  const darkStyle = useDarkStyle(style, addStyleType, customTheme)
+  return (
+    <button
+      type="submit"
+      css={[buttonStyle, darkStyle]}
+      onClick={onClick}
+      ref={ref}
+    >
       {children}
     </button>
   )

@@ -2,17 +2,20 @@
 import { ReactNode } from 'react'
 import { Meta, Story } from '@storybook/react/types-6-0'
 import { jsx } from '@emotion/core'
-import PostList from './index'
+import PostView from '.'
 import DocTemplate from '../../Utils/StorybookDocTemplate'
-import { FetchState, Post } from '../../Types/firestore.schema'
+import {
+  FetchState,
+  Post as PostType,
+  PostContent,
+} from '../../Types/firestore.schema'
 import { dummyPosts } from '../../__fixtures__/posts'
-import PostItem from './PostItem'
 
 export default {
-  title: 'Compositions/PostList',
-  component: PostList,
+  title: 'Compositions/PostView',
+  component: PostView,
   argTypes: {
-    postList: {
+    Post: {
       description: '포스트 리스트',
       table: {
         type: {
@@ -54,20 +57,18 @@ export default {
   },
 } as Meta
 
-interface StoryButtonProps {
-  postList: Post[]
+interface StoryPostViewProps {
+  Post: PostType
+  postContent: PostContent
   fetchState: FetchState
   children: ReactNode
 }
 
-const PostListTemplate: Story<StoryButtonProps> = (args) => {
-  const { postList, fetchState } = args
-  return <PostList postList={postList} fetchState={fetchState} />
+const PostViewTemplate: Story<StoryPostViewProps> = (args) => {
+  const { Post, postContent, fetchState } = args
+  return (
+    <PostView post={Post} postContent={postContent} fetchState={fetchState} />
+  )
 }
 
-export const DefaultPostList = PostListTemplate
-
-export const DefaultPostItem: Story<StoryButtonProps> = (args) => {
-  const { postList } = args
-  return <PostItem post={postList[0]} />
-}
+export const DefaultPostView = PostViewTemplate
