@@ -11,6 +11,7 @@ import Loading from '../../Components/Loading'
 import { FetchState, Post } from '../../Types/firestore.schema'
 import PostItem from './PostItem'
 import Article from '../../Components/Article'
+import Section from '../../Components/Section'
 
 const style: DarkStyleType = {
   dark: tw``,
@@ -47,7 +48,11 @@ const PostList: FC<Props> = ({
       Content = '텅 비었음'
       break
     default:
-      Content = <Loading />
+      Content = (
+        <Section>
+          <Loading />
+        </Section>
+      )
   }
 
   return <Article css={darkStyle}>{Content}</Article>

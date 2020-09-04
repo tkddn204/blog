@@ -36,7 +36,7 @@ const RightHeader: FC<Props> = ({ addStyleType, customTheme }) => {
         <Nav key="nav-about" link="/about">
           About
         </Nav>
-        <Nav key="nav-blog" link="/blog">
+        <Nav key="nav-blog" link="/">
           Blog
         </Nav>
       </NavList>

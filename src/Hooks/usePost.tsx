@@ -40,7 +40,7 @@ type PostReturnType = [Post, PostContent, FetchState]
 type PostFunctionReturnType = (postId: string) => PostReturnType
 
 const usePostList: PostFunctionReturnType = (postId: string) => {
-  useFirestoreConnect(postQuery(postId))
+  useFirestoreConnect(postQuery(postId || ''))
   const { post, postContent } = useSelector(selector)
 
   let fetchState: FetchState

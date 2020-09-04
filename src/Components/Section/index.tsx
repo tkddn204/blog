@@ -13,7 +13,7 @@ const style: DarkStyleType = {
 }
 
 const SectionStyle = tw`
-  flex flex-col
+  flex flex-col justify-center
   bg-transparent my-3
 `
 

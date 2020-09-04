@@ -91,7 +91,11 @@ const PostView: FC<Props> = ({
       )
       break
     default:
-      Content = <Loading />
+      Content = (
+        <Section>
+          <Loading />
+        </Section>
+      )
       break
   }
 

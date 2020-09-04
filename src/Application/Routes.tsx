@@ -10,9 +10,9 @@ import EditPost from '../Pages/EditPost'
 export const routes = [
   { path: '/', exact: true, Component: Blog, name: 'Blog' },
   { path: '/post/:postId', Component: Post, name: 'Post' },
-  { path: '/about', Component: About },
-  { path: '/edit', Component: EditPost },
-  // { path: '*', Component: 404}
+  { path: '/about', Component: About, name: 'About' },
+  { path: '/edit', Component: EditPost, name: 'Edit' },
+  { path: '*', Component: Blog, name: 'Blog' },
 ]
 
 const Routes: FC = () => (
