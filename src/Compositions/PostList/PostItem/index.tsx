@@ -1,57 +1,68 @@
 /** @jsx jsx */
-import { FC } from 'react'
-import tw from 'twin.macro'
-import { jsx, css } from '@emotion/core'
+import { FCEP } from 'react'
+import { css, jsx } from '@emotion/core'
 import moment from 'moment'
-import useDarkStyle, {
-  DarkStyledProps,
-  DarkStyleType,
-} from '../../../Hooks/useDarkStyle'
+import useStyle from '../../../Hooks/useStyle'
 import { Post } from '../../../Types/firestore.schema'
+import { ThemeType } from '../../../Types/theme'
 
-const style: DarkStyleType = {
-  dark: tw`
-    text-white
-    hover:text-green-500`,
-  defaultDark: tw`
-    dark:text-white
-    dark:hover:text-green-500
-  `,
-}
+const postItemStyle = (theme: ThemeType) => css`
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  color: black;
+  font-size: medium;
+  margin: 0.75rem 1.5rem 0.75rem 1.5rem;
+  padding: 0.75rem;
+  cursor: pointer;
 
-const postItemStyle = css`
-  ${tw`
-    flex flex-col
-    bg-transparent
-    text-black
-    text-base
-    mx-10 my-3 p-3
-    hover:(bg-gray-300 bg-opacity-25)
-    cursor-pointer
-    first:mt-0 last:mb-0
-    transition-all duration-300
-  `}
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &:hover {
+    background: ${theme.color.gray['3']}40;
+  }
+
+  transition-property: all;
+  transition-duration: 300ms;
 `
 
-const postTitleStyle = tw`
-  text-2xl
+const postItemDarkStyle = (theme: ThemeType) => css`
+  color: white;
+
+  &:hover {
+    color: ${theme.color.green['5']};
+  }
 `
 
-const postDateStyle = tw`
-  text-sm text-gray-500
+const postTitleStyle = css`
+  margin: 0.5rem 0;
+  font-size: xx-large;
 `
 
-interface Props extends DarkStyledProps {
+const postDateStyle = (theme: ThemeType) => css`
+  margin: 0;
+  font-size: small;
+  color: ${theme.color.gray['5']};
+`
+
+interface Props {
   post: Post
 }
 
-const PostItem: FC<Props> = ({ post, addStyleType, customTheme }) => {
-  const darkStyle = useDarkStyle(style, addStyleType, customTheme)
+const PostItem: FCEP<Props> = ({ post, className }) => {
+  const cssPostItemStyle = useStyle(postItemStyle, postItemDarkStyle)
+  const cssPostDateStyle = useStyle(postDateStyle)
 
   return (
-    <div css={[postItemStyle, darkStyle]}>
+    <div css={cssPostItemStyle} className={className}>
       <h3 css={postTitleStyle}>{post.title}</h3>
-      <h4 css={postDateStyle}>
+      <h4 css={cssPostDateStyle}>
         {moment(post.createdDate).format('YYYY. M. D.')}
       </h4>
       <p>{post.summary}</p>

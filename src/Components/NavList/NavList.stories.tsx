@@ -4,10 +4,10 @@ import { Meta, Story } from '@storybook/react/types-6-0'
 import { jsx } from '@emotion/core'
 import NavList from './index'
 import DocTemplate from '../../Utils/StorybookDocTemplate'
-import Nav from '../../Components/Nav'
+import NavItem from '../NavItem'
 
 export default {
-  title: 'Compositions/NavList',
+  title: 'Components/NavList',
   component: NavList,
   argTypes: {
     children: {
@@ -17,19 +17,19 @@ export default {
       },
       table: {
         type: {
-          summary: 'Nav[]',
+          summary: 'NavItem[]',
         },
         defaultValue: {
           summary: '-',
         },
       },
       defaultValue: [
-        <Nav key="nav-about" link="/about">
+        <NavItem key="nav-about" link="/about">
           About
-        </Nav>,
-        <Nav key="nav-blog" link="/blog">
+        </NavItem>,
+        <NavItem key="nav-blog" link="/blog">
           Blog
-        </Nav>,
+        </NavItem>,
       ],
       control: 'array',
     },

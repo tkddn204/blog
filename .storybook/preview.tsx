@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { StoryGetter, StoryContext } from '@storybook/addons'
 import React, { FC, ReactNode, useEffect } from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import Providers from '../src/Application/Providers'
 import { changeTheme } from '../src/Features/theme/themeSlice'
 

@@ -1,35 +1,31 @@
 /** @jsx jsx */
-import { FC } from 'react'
-import tw from 'twin.macro'
-import { jsx } from '@emotion/core'
-import useDarkStyle, {
-  DarkStyledProps,
-  DarkStyleType,
-} from '../../Hooks/useDarkStyle'
+import { FCEP } from 'react'
+import { css, jsx } from '@emotion/core'
+import useStyle from '../../Hooks/useStyle'
+import { ThemeType } from '../../Types/theme'
 
-const style: DarkStyleType = {
-  dark: tw`bg-black bg-opacity-75`,
-  defaultDark: tw`
-    dark:bg-black dark:bg-opacity-75
-  `,
-}
-
-const headerStyle = tw`
-  flex items-center justify-between
-  relative
-  h-16
-  px-5 mt-5 mx-10
-  bg-gray-200 bg-opacity-25
-  rounded-full
-  shadow
-  transition-all duration-150
+const style = (theme: ThemeType) => css`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  height: 4rem;
+  padding: 0 1.25rem 0 1.25rem;
+  margin: 1.25rem 2.5rem 0 2.5rem;
+  background: ${theme.color.gray['2']}40;
+  border-radius: 9999px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  transition-property: all;
+  transition-duration: 150ms;
 `
 
-type Props = DarkStyledProps
-
-const Header: FC<Props> = ({ addStyleType, children, customTheme }) => {
-  const darkStyle = useDarkStyle(style, addStyleType, customTheme)
-  return <header css={[headerStyle, darkStyle]}>{children}</header>
-}
+const darkStyle = () => css`
+  background: rgba(0, 0, 0, 0.75);
+`
+const Header: FCEP = ({ children, className }) => (
+  <header css={useStyle(style, darkStyle)} className={className}>
+    {children}
+  </header>
+)
 
 export default Header

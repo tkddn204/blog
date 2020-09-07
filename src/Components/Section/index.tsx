@@ -1,36 +1,20 @@
 /** @jsx jsx */
-import { FC } from 'react'
-import tw from 'twin.macro'
-import { jsx } from '@emotion/core'
-import useDarkStyle, {
-  DarkStyledProps,
-  DarkStyleType,
-} from '../../Hooks/useDarkStyle'
+import { FCEP } from 'react'
+import { css, jsx } from '@emotion/core'
+import useStyle from '../../Hooks/useStyle'
 
-const style: DarkStyleType = {
-  dark: tw``,
-  defaultDark: tw``,
-}
-
-const SectionStyle = tw`
-  flex flex-col justify-center
-  bg-transparent my-3
+const style = () => css`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0.75rem 0 0.75rem 0;
+  background: transparent;
 `
 
-type Props = DarkStyledProps
-
-const Section: FC<Props> = ({
-  addStyleType,
-  children,
-  customTheme,
-  className,
-}) => {
-  const darkStyle = useDarkStyle(style, addStyleType, customTheme)
-  return (
-    <section css={[SectionStyle, darkStyle]} className={className}>
-      {children}
-    </section>
-  )
-}
+const Section: FCEP = ({ children, className }) => (
+  <section css={useStyle(style)} className={className}>
+    {children}
+  </section>
+)
 
 export default Section

@@ -1,57 +1,51 @@
 /** @jsx jsx */
-import { FC } from 'react'
-import tw, { TwStyle } from 'twin.macro'
-import { jsx } from '@emotion/core'
+import { FCEP } from 'react'
+import { css, jsx } from '@emotion/core'
 import { motion } from 'framer-motion'
-import useDarkStyle, {
-  DarkStyledProps,
-  DarkStyleType,
-} from '../../Hooks/useDarkStyle'
+import useStyle from '../../Hooks/useStyle'
+import { commonTheme } from '../../Application/Theme'
+import { ThemeType } from '../../Types/theme'
 
-const style: DarkStyleType = {
-  dark: tw``,
-  defaultDark: tw``,
-}
-
-const LoadingContainerStyle = tw`
-  flex flex-row items-center justify-between
-  bg-white bg-opacity-50
-  w-20 h-20
-  p-2
-  rounded
-  border border-gray-400
+const LoadingContainerStyle = (theme: ThemeType) => css`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.5);
+  width: 5rem;
+  height: 5rem;
+  padding: 0.5rem;
+  border: solid 0.1rem ${theme.color.gray['4']};
 `
 
-const Box = tw(motion.div)`
-  w-4 h-odds
+const boxStyle = (boxColor: string) => css`
+  background: ${boxColor};
+  width: 1.25rem;
+  height: 75%;
 `
 
-type Props = DarkStyledProps
-
-const Loading: FC<Props> = ({ addStyleType, customTheme }) => {
-  const darkStyle = useDarkStyle(style, addStyleType, customTheme)
-  return (
-    <div css={[LoadingContainerStyle, darkStyle]}>
-      {[tw`bg-green-200`, tw`bg-green-400`, tw`bg-green-600`].map(
-        (boxColor: TwStyle, index: number) => {
-          return (
-            <Box
-              key={Math.random()}
-              animate={{
-                scaleY: [0.8, 1, 0.8],
-              }}
-              transition={{
-                loop: Infinity,
-                duration: 1.5,
-                delay: (index + 1) / 2,
-              }}
-              css={boxColor}
-            />
-          )
-        }
-      )}
-    </div>
-  )
-}
+const Loading: FCEP = ({ className }) => (
+  <div css={useStyle(LoadingContainerStyle)} className={className}>
+    {[
+      commonTheme.color.green['2'],
+      commonTheme.color.green['4'],
+      commonTheme.color.green['6'],
+    ].map((boxColor, index) => {
+      return (
+        <motion.div
+          key={Math.random()}
+          animate={{
+            scaleY: [0.8, 1, 0.8],
+          }}
+          transition={{
+            loop: Infinity,
+            duration: 1.5,
+            delay: (index + 1) / 2,
+          }}
+          css={boxStyle(boxColor)}
+        />
+      )
+    })}
+  </div>
+)
 
 export default Loading

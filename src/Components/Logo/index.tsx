@@ -1,45 +1,36 @@
 /** @jsx jsx */
-import { FC } from 'react'
-import tw from 'twin.macro'
-import { jsx } from '@emotion/core'
-import useDarkStyle, {
-  DarkStyledProps,
-  DarkStyleType,
-} from '../../Hooks/useDarkStyle'
+import { FCEP } from 'react'
+import { css, jsx } from '@emotion/core'
+import useStyle from '../../Hooks/useStyle'
 
 import LogoSVG from './LogoSVG'
+import { ThemeType } from '../../Types/theme'
 
-const style: DarkStyleType = {
-  dark: tw`bg-black bg-opacity-75 text-white border-none`,
-  defaultDark: tw`
-    dark:bg-black
-    dark:bg-opacity-75
-    dark:text-white
-    dark:border-none
-  `,
-}
+const style = (theme: ThemeType) => css`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  color: black;
+  width: 2rem;
+  height: 2rem;
+  padding: 0.5rem;
+  border: solid 0.1rem ${theme.color.gray['4']};
+  border-radius: 9999px;
+  transition-property: all;
+  transition-duration: 150ms;
+`
 
-const LogoContainerStyle = tw`
-    flex items-center justify-center
-    bg-white
-    text-black
-    w-12 h-12
-    p-2
-    rounded-full
-    border border-gray-400
-    transition-all duration-150
-  `
+const darkStyle = () => css`
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  border: none;
+`
 
-type Props = DarkStyledProps
-
-const Logo: FC<Props> = ({ addStyleType, customTheme, className }) => {
-  const darkStyle = useDarkStyle(style, addStyleType, customTheme)
-
-  return (
-    <div css={[LogoContainerStyle, darkStyle]} className={className}>
-      <LogoSVG />
-    </div>
-  )
-}
+const Logo: FCEP = ({ className }) => (
+  <div css={useStyle(style, darkStyle)} className={className}>
+    <LogoSVG />
+  </div>
+)
 
 export default Logo

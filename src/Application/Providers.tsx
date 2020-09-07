@@ -1,7 +1,8 @@
 import React, { FC } from 'react'
 import { Provider as ReduxProvider } from 'react-redux'
-import 'tailwindcss/dist/base.min.css'
 import { Global, css } from '@emotion/core'
+import { ThemeProvider } from 'emotion-theming'
+import emotionNormalize from 'emotion-normalize'
 
 import firebase from 'firebase/app'
 import 'firebase/auth'
@@ -16,6 +17,7 @@ import { persistor, store } from './Store'
 
 import './I18nConfig'
 import LocaleProvider from '../Features/locale/LocaleProvider'
+import { commonTheme } from './Theme'
 // import SelectThemeProvider from '../Features/theme/SelectThemeProvider'
 
 // Initialize Firebase
@@ -41,16 +43,16 @@ const Providers: FC = ({ children }) => (
           createFirestoreInstance={createFirestoreInstance}
         >
           <BrowserRouter>
-            <LocaleProvider>
-              <Global
-                styles={css`
-                  @tailwind base;
-                  @tailwind components;
-                  @tailwind utilities;
-                `}
-              />
-              {children}
-            </LocaleProvider>
+            <ThemeProvider theme={commonTheme}>
+              <LocaleProvider>
+                <Global
+                  styles={css`
+                    ${emotionNormalize}
+                  `}
+                />
+                {children}
+              </LocaleProvider>
+            </ThemeProvider>
           </BrowserRouter>
         </ReactReduxFirebaseProvider>
       </PersistGate>

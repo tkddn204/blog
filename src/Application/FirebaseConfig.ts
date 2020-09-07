@@ -9,7 +9,7 @@ export const firebaseConfig = {
 }
 
 export const reduxFirebaseConfig = {
-  userProfie: 'users',
+  userProfile: 'users',
   useFirestoreForProfile: true,
   enableLogging: false,
 }

@@ -1,51 +1,42 @@
 /** @jsx jsx */
-import { FC, StrictMode } from 'react'
-import tw from 'twin.macro'
+import { FCEP, StrictMode } from 'react'
 import 'github-markdown-css/github-markdown.css'
-import { jsx, css } from '@emotion/core'
+import { css, jsx } from '@emotion/core'
 import ReactMarkdown from 'react-markdown'
 import moment from 'moment'
-import useDarkStyle, {
-  DarkStyledProps,
-  DarkStyleType,
-} from '../../Hooks/useDarkStyle'
+import useStyle from '../../Hooks/useStyle'
 import { FetchState, Post, PostContent } from '../../Types/firestore.schema'
 import Article from '../../Components/Article'
 import Section from '../../Components/Section'
 import Loading from '../../Components/Loading'
-
-const style: DarkStyleType = {
-  dark: tw``,
-  defaultDark: tw``,
-}
-
-interface Props extends DarkStyledProps {
-  post: Post
-  postContent: PostContent
-  fetchState: FetchState
-}
+import { ThemeType } from '../../Types/theme'
 
 const postStyle = css`
-  ${tw`w-full px-20`}
+  width: 100%;
+  padding: 0 5rem 0 5rem;
 `
 
 const postTitleStyle = css`
-  ${tw`w-full
-    text-3xl font-medium
-    mb-1`}
-  font-family: '나눔바른고딕', 'Nanum Barun Gothic', '맑은고딕', 'Malgun Gothic', sans-serif, Arial;
+  width: 100%;
+  font-size: xx-large;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  font-family: '나눔바른고딕', 'Nanum Barun Gothic', '맑은고딕', 'Malgun Gothic',
+    sans-serif, Arial;
 `
 
 const postDateContainerStyle = css`
-  ${tw`mb-5`}
+  margin-bottom: 1.25rem;
 `
 
-const postCreateDateStyle = css`
-  ${tw`text-gray-500 text-sm`}
+const postCreateDateStyle = (theme: ThemeType) => css`
+  color: ${theme.color.gray['5']};
+  font-size: small;
 `
 
-const postModifiedDateStyle = css`
-  ${tw`text-gray-500 text-sm`}
+const postModifiedDateStyle = (theme: ThemeType) => css`
+  ${postCreateDateStyle(theme)}
+
   ::before {
     content: '(';
   }
@@ -55,14 +46,15 @@ const postModifiedDateStyle = css`
   }
 `
 
-const PostView: FC<Props> = ({
-  post,
-  postContent,
-  addStyleType,
-  customTheme,
-  fetchState,
-}) => {
-  const darkStyle = useDarkStyle(style, addStyleType, customTheme)
+interface Props {
+  post: Post
+  postContent: PostContent
+  fetchState: FetchState
+}
+
+const PostView: FCEP<Props> = ({ post, postContent, fetchState }) => {
+  const cssPostCreateDateStyle = useStyle(postCreateDateStyle)
+  const cssPostModifiedDateStyle = useStyle(postModifiedDateStyle)
 
   let Content
   switch (fetchState) {
@@ -75,10 +67,10 @@ const PostView: FC<Props> = ({
           <Section css={postStyle}>
             <h1 css={postTitleStyle}>{post && post.title}</h1>
             <div css={postDateContainerStyle}>
-              <span css={postCreateDateStyle}>
+              <span css={cssPostCreateDateStyle}>
                 {post && moment(post.createdDate).format('YYYY. M. D.')}
               </span>
-              <span css={postModifiedDateStyle}>
+              <span css={cssPostModifiedDateStyle}>
                 {post && moment(post.modifiedDate).fromNow()}
               </span>
             </div>
@@ -99,7 +91,7 @@ const PostView: FC<Props> = ({
       break
   }
 
-  return <Article css={darkStyle}>{Content}</Article>
+  return <Article>{Content}</Article>
 }
 
 export default PostView

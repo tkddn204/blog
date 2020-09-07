@@ -1,39 +1,22 @@
 /** @jsx jsx */
-import { FC } from 'react'
-import tw from 'twin.macro'
-import { jsx } from '@emotion/core'
-import useDarkStyle, {
-  DarkStyledProps,
-  DarkStyleType,
-} from '../../Hooks/useDarkStyle'
+import { FCEP } from 'react'
+import { css, jsx } from '@emotion/core'
+import useStyle from '../../Hooks/useStyle'
 
-const style: DarkStyleType = {
-  dark: tw`
-    text-pink-200
-    visited:text-indigo-200
-  `,
-  defaultDark: tw`
-    dark:text-pink-200
-    dark:visited:text-indigo-200
-  `,
-}
-
-const articleStyle = tw`
-  flex flex-col
-  my-5
+const style = () => css`
+  display: flex;
+  flex-direction: column;
+  color: black;
+  margin: 1.25rem 0 1.25rem 0;
 `
 
-type Props = DarkStyledProps
+const darkStyle = () => css`
+  color: rgba(255, 255, 255, 0.9);
+`
 
-const Article: FC<Props> = ({
-  addStyleType,
-  children,
-  customTheme,
-  className,
-}) => {
-  const darkStyle = useDarkStyle(style, addStyleType, customTheme)
+const Article: FCEP = ({ children, className }) => {
   return (
-    <article className={className} css={[articleStyle, darkStyle]}>
+    <article css={useStyle(style, darkStyle)} className={className}>
       {children}
     </article>
   )

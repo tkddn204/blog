@@ -1,41 +1,30 @@
 /** @jsx jsx */
-import { FC } from 'react'
+import { FCEP, HTMLProps } from 'react'
 import { Link } from 'react-router-dom'
-import tw from 'twin.macro'
-import { jsx } from '@emotion/core'
-import useDarkStyle, {
-  DarkStyledProps,
-  DarkStyleType,
-} from '../../Hooks/useDarkStyle'
+import { css, jsx } from '@emotion/core'
+import useStyle from '../../Hooks/useStyle'
+import { ThemeType } from '../../Types/theme'
 
-const style: DarkStyleType = {
-  dark: tw`
-    text-pink-200
-    visited:text-indigo-200
-  `,
-  defaultDark: tw`
-    dark:text-pink-200
-    dark:visited:text-indigo-200
-  `,
-}
+const style = (theme: ThemeType) => css`
+  color: ${theme.color.pink['5']};
 
-const AnchorStyle = tw(Link)`
-  text-pink-500
-  hover:underline
-  visited:text-indigo-500
+  &:hover {
+    text-decoration: underline;
+  }
 `
 
-interface Props extends DarkStyledProps {
+const darkStyle = (theme: ThemeType) => css`
+  color: ${theme.color.pink['2']};
+`
+
+interface Props extends HTMLProps<HTMLAnchorElement> {
   link?: string
 }
 
-const Anchor: FC<Props> = ({ link, addStyleType, children, customTheme }) => {
-  const darkStyle = useDarkStyle(style, addStyleType, customTheme)
-  return (
-    <AnchorStyle to={link || '/'} css={darkStyle}>
-      {children}
-    </AnchorStyle>
-  )
-}
+const Anchor: FCEP<Props> = ({ link, children, className }) => (
+  <Link to={link || '/'} css={useStyle(style, darkStyle)} className={className}>
+    {children}
+  </Link>
+)
 
 export default Anchor

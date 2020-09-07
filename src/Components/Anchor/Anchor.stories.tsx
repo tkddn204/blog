@@ -2,9 +2,9 @@
 import { ReactNode } from 'react'
 import { css, jsx } from '@emotion/core'
 import { Meta, Story } from '@storybook/react/types-6-0'
-import { theme as twTheme } from 'twin.macro'
 import Anchor from '.'
 import DocTemplate from '../../Utils/StorybookDocTemplate'
+import { commonTheme } from '../../Application/Theme'
 
 export default {
   title: 'Components/Anchor',
@@ -29,13 +29,13 @@ export default {
     color: {
       description:
         '앵커의 색을 지정합니다. 올바른 색상 문자열이 아닐 경우 테마 앵커의 색상을 따릅니다.',
-      defaultValue: twTheme`colors.pink.400`,
+      defaultValue: commonTheme.color.pink['5'],
       table: {
         type: {
           summary: 'color',
         },
         defaultValue: {
-          summary: twTheme`colors.pink.400`,
+          summary: commonTheme.color.pink['5'],
         },
       },
       control: 'color',
@@ -58,12 +58,13 @@ interface StoryAnchorProps {
 }
 const anchorTemplate: Story<StoryAnchorProps> = (
   args,
-  { globals: { locale } }
+  { globals: { locale, theme } }
 ) => {
   const { color } = args
+  const cssStyle = theme === 'default' && css({ color })
   const text = locale !== 'ko' ? 'Anchor' : args.children
 
-  return <Anchor customTheme={css({ color })}>{text}</Anchor>
+  return <Anchor css={cssStyle}>{text}</Anchor>
 }
 
 export const DefaultAnchor = anchorTemplate

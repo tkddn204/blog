@@ -1,6 +1,4 @@
-/** @jsx jsx */
-import { ReactNode } from 'react'
-import { jsx } from '@emotion/core'
+import React, { ReactNode } from 'react'
 import { Meta, Story } from '@storybook/react/types-6-0'
 import Article from '.'
 import DocTemplate from '../../Utils/StorybookDocTemplate'

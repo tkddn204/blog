@@ -6,7 +6,7 @@ import LoginButton from './index'
 import DocTemplate from '../../Utils/StorybookDocTemplate'
 
 export default {
-  title: 'Components/LoginButton',
+  title: 'Compositions/LoginButton',
   component: LoginButton,
   argTypes: {
     auth: {

@@ -25,10 +25,14 @@ interface StoryLoadingProps {
   color: string
   children: ReactNode
 }
-const LoadingTemplate: Story<StoryLoadingProps> = (args) => {
+const LoadingTemplate: Story<StoryLoadingProps> = (
+  args,
+  { globals: { theme } }
+) => {
   const { color } = args
+  const cssStyle = theme === 'default' && css({ color })
 
-  return <Loading customTheme={css({ color })} />
+  return <Loading css={cssStyle} />
 }
 
 export const DefaultLoading = LoadingTemplate

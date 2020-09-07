@@ -18,15 +18,13 @@ module.exports = {
   },
   globals: {
     Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly',
-    tw: true
+    SharedArrayBuffer: 'readonly'
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 2020,
     sourceType: 'module',
     project: './tsconfig.json',
     createDefaultProgram: true,

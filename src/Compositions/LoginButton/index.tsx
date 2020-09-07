@@ -1,58 +1,42 @@
 /** @jsx jsx */
-import { FC, StrictMode } from 'react'
-import tw from 'twin.macro'
+import { FCEP, StrictMode } from 'react'
 import { css, jsx } from '@emotion/core'
 import { useDispatch } from 'react-redux'
 import { FirebaseReducer } from 'react-redux-firebase'
-import useDarkStyle, {
-  DarkStyledProps,
-  DarkStyleType,
-} from '../../Hooks/useDarkStyle'
-import Button from '../Button'
 import { signInGoogle, signOut } from '../../Features/auth/authThunk'
+import Button from '../../Components/Button'
 import GoogleLogo from './GoogleLogo'
 
-const style: DarkStyleType = {
-  dark: tw``,
-  defaultDark: tw``,
-}
-
-const MemberMenuStyle = css`
-  ${tw`
-    flex items-center justify-center
-    bg-transparent
-  `}
+const memberMenuStyle = css`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
 `
 
-interface Props extends DarkStyledProps {
+interface Props {
   auth: Partial<FirebaseReducer.AuthState>
 }
 
-const MemberMenu: FC<Props> = ({
-  auth,
-  addStyleType,
-  customTheme,
-  className,
-}) => {
-  const darkStyle = useDarkStyle(style, addStyleType, customTheme)
+const MemberMenu: FCEP<Props> = ({ auth, className }) => {
   const dispatch = useDispatch()
 
   const onClickButton = () =>
     auth.isEmpty ? dispatch(signInGoogle()) : dispatch(signOut())
 
   return (
-    <div css={[MemberMenuStyle, darkStyle]} className={className}>
+    <div css={memberMenuStyle} className={className}>
       {!auth.isLoaded ? (
         'Loading...'
       ) : (
-        <Button addStyleType={['circle']} onClick={onClickButton}>
+        <Button onClick={onClickButton} custom={['circle']}>
           {!auth.isEmpty ? (
             'Logout'
           ) : (
             <StrictMode>
               <GoogleLogo
                 css={css`
-                  ${tw`mr-3`}
+                  margin: 0 0.75rem 0 0;
                 `}
               />
               Login

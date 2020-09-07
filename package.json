@@ -5,6 +5,7 @@
   "repository": {
     "url": "https://github.com/tkddn204/blog"
   },
+  "license": "MIT",
   "dependencies": {
     "@emotion/core": "^10.0.35",
     "@emotion/styled": "^10.0.27",
@@ -22,12 +23,12 @@
     "@types/react-transition-group": "^4.4.0",
     "@types/redux-logger": "^3.0.8",
     "emotion": "^10.0.27",
+    "emotion-normalize": "^10.1.0",
     "emotion-theming": "^10.0.27",
     "firebase": "^7.19.0",
     "firebase-tools": "^8.9.2",
     "framer-motion": "^2.4.3-beta.2",
     "github-markdown-css": "^4.0.0",
-    "global": "^4.4.0",
     "husky": "4.2.5",
     "i18next": "^19.7.0",
     "invert-color": "^2.0.0",
@@ -49,8 +50,6 @@
     "redux-firestore": "^0.13.0",
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
-    "tailwindcss": "^1.7.3",
-    "twin.macro": "^1.7.0",
     "typescript": "~3.7.2"
   },
   "scripts": {
@@ -78,15 +77,6 @@
       "yarn lint:fix",
       "git add ."
     ]
-  },
-  "babelMacros": {
-    "twin": {
-      "config": "tailwind.config.js",
-      "preset": "emotion",
-      "debugProp": true,
-      "debugPlugins": false,
-      "debug": false
-    }
   },
   "jest": {
     "snapshotSerializers": [

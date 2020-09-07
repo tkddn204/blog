@@ -1,70 +1,72 @@
 /** @jsx jsx */
 import { FC, HTMLProps } from 'react'
-import tw from 'twin.macro'
-import { jsx } from '@emotion/core'
-import useDarkStyle, {
-  DarkStyledProps,
-  DarkStyleType,
-} from '../../Hooks/useDarkStyle'
+import { css, jsx } from '@emotion/core'
+import useStyle, { ThemedStyles } from '../../Hooks/useStyle'
+import { ThemeType } from '../../Types/theme'
 
-const style: DarkStyleType = {
-  dark: tw`bg-black text-white active:bg-pink-600`,
-  defaultDark: tw`
-    dark:bg-black
-    dark:text-white
-    dark:active:bg-pink-600
-  `,
-  circle: tw`
-    rounded-full
+const style = (theme: ThemeType) => css`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  background: white;
+  color: black;
+  font-size: medium;
+  padding: 0.25rem 1rem 0.25rem 1rem;
+  border: solid 0.1rem ${theme.color.gray['3']};
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition-property: all;
+  transition-duration: 150ms;
+
+  &:hover {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    background: ${theme.color.blue['2']};
+  }
+`
+
+const darkStyle = (theme: ThemeType) => css`
+  background: black;
+  color: white;
+
+  &:active {
+    background: ${theme.color.pink['6']};
+  }
+`
+
+const customStyle: Record<string, ThemedStyles> = {
+  circle: () => css`
+    border-radius: 9999px;
   `,
 }
 
-const buttonStyle = tw`
-    inline-flex items-center justify-center
-    align-middle
-    bg-white
-    text-black
-    text-base
-    px-5 py-1
-    border border-solid border-gray-300
-    outline-none
-    cursor-pointer
-    rounded-sm
-    transition-all duration-150
-    hover:(border border-solid shadow)
-    focus:outline-none
-    active:bg-blue-200`
-
-interface Props extends DarkStyledProps, HTMLProps<HTMLButtonElement> {}
+interface Props extends HTMLProps<HTMLButtonElement> {
+  submit?: boolean
+  custom?: string[]
+}
 
 const Button: FC<Props> = ({
-  addStyleType,
+  submit = false,
+  custom = [],
   children,
-  customTheme,
+  className,
   onClick,
 }) => {
-  const darkStyle = useDarkStyle(style, addStyleType, customTheme)
-  return (
-    <button type="button" css={[buttonStyle, darkStyle]} onClick={onClick}>
-      {children}
-    </button>
-  )
-}
-
-export const SubmitTypeButton: FC<Props> = ({
-  addStyleType,
-  children,
-  customTheme,
-  onClick,
-  ref,
-}) => {
-  const darkStyle = useDarkStyle(style, addStyleType, customTheme)
+  const customStyles = custom.map((cus) => customStyle[cus])
   return (
     <button
-      type="submit"
-      css={[buttonStyle, darkStyle]}
+      /* eslint-disable-next-line react/button-has-type */
+      type={submit ? 'submit' : 'button'}
+      css={useStyle(style, darkStyle, customStyles)}
       onClick={onClick}
-      ref={ref}
+      className={className}
     >
       {children}
     </button>

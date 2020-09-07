@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { ReactNode } from 'react'
 import { Meta, Story } from '@storybook/react/types-6-0'
-import { theme as twTheme } from 'twin.macro'
 import { css, jsx } from '@emotion/core'
 import Logo from '.'
 import DocTemplate from '../../Utils/StorybookDocTemplate'
@@ -13,13 +12,13 @@ export default {
     color: {
       description:
         '로고의 색을 지정합니다. 올바른 색상 문자열이 아닐 경우 테마 앵커의 색상을 따릅니다.',
-      defaultValue: twTheme`colors.black`,
+      defaultValue: 'black',
       table: {
         type: {
           summary: 'color',
         },
         defaultValue: {
-          summary: twTheme`colors.black`,
+          summary: 'black',
         },
       },
       control: 'color',
@@ -41,10 +40,11 @@ interface StoryLogoProps {
   color: string
   children: ReactNode
 }
-const logoTemplate: Story<StoryLogoProps> = (args) => {
+const logoTemplate: Story<StoryLogoProps> = (args, { globals: { theme } }) => {
   const { color } = args
+  const cssStyle = theme === 'default' && css({ color })
 
-  return <Logo customTheme={css({ color })} />
+  return <Logo css={cssStyle} />
 }
 
 export const DefaultLogo = logoTemplate

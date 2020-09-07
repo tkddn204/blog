@@ -1,41 +1,25 @@
 /** @jsx jsx */
-import { FC } from 'react'
-import tw from 'twin.macro'
-import { jsx, css } from '@emotion/core'
+import { FCEP } from 'react'
+import { css, jsx } from '@emotion/core'
 import { Link } from 'react-router-dom'
-import useDarkStyle, {
-  DarkStyledProps,
-  DarkStyleType,
-} from '../../Hooks/useDarkStyle'
 import Loading from '../../Components/Loading'
 import { FetchState, Post } from '../../Types/firestore.schema'
 import PostItem from './PostItem'
 import Article from '../../Components/Article'
 import Section from '../../Components/Section'
 
-const style: DarkStyleType = {
-  dark: tw``,
-  defaultDark: tw``,
-}
-
-interface Props extends DarkStyledProps {
+interface Props {
   postList: Post[]
   fetchState: FetchState
 }
 
 const postItemLink = css`
-  ${tw`w-full`}
+  text-decoration: none;
+  width: 100%;
 `
 
-const PostList: FC<Props> = ({
-  postList,
-  fetchState,
-  addStyleType,
-  customTheme,
-}) => {
-  const darkStyle = useDarkStyle(style, addStyleType, customTheme)
-
-  let Content = null
+const PostList: FCEP<Props> = ({ postList, fetchState, className }) => {
+  let Content
   switch (fetchState) {
     case FetchState.loaded:
       Content = postList.map((post: Post) => (
@@ -55,7 +39,7 @@ const PostList: FC<Props> = ({
       )
   }
 
-  return <Article css={darkStyle}>{Content}</Article>
+  return <Article className={className}>{Content}</Article>
 }
 
 export default PostList

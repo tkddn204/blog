@@ -1,34 +1,28 @@
 /** @jsx jsx */
-import { FC } from 'react'
-import tw from 'twin.macro'
-import { jsx } from '@emotion/core'
-import useDarkStyle, {
-  DarkStyledProps,
-  DarkStyleType,
-} from '../../Hooks/useDarkStyle'
+import { FCEP } from 'react'
+import { css, jsx } from '@emotion/core'
+import useStyle from '../../Hooks/useStyle'
+import { ThemeType } from '../../Types/theme'
 
-const style: DarkStyleType = {
-  dark: tw`text-gray-600`,
-  defaultDark: tw`
-    dark:text-gray-600
-  `,
-}
-
-const headerStyle = tw`
-  flex items-center justify-center
-  w-full
-  my-5
-  bg-transparent
-  text-sm
-  text-gray-400
-  transition-all duration-150
+const style = (theme: ThemeType) => css`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 1.25rem 0 1.25rem 0;
+  background: transparent;
+  font-size: small;
+  color: ${theme.color.gray['4']};
+  transition-property: all;
+  transition-duration: 150ms;
 `
 
-type Props = DarkStyledProps
+const darkStyle = (theme: ThemeType) => css`
+  color: ${theme.color.gray['6']};
+`
 
-const Footer: FC<Props> = ({ addStyleType, children, customTheme }) => {
-  const darkStyle = useDarkStyle(style, addStyleType, customTheme)
-  return <footer css={[headerStyle, darkStyle]}>{children}</footer>
-}
+const Footer: FCEP = ({ children }) => (
+  <footer css={useStyle(style, darkStyle)}>{children}</footer>
+)
 
 export default Footer

@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { ReactNode } from 'react'
 import { Meta, Story } from '@storybook/react/types-6-0'
-import { theme as twTheme } from 'twin.macro'
 import { css, jsx } from '@emotion/core'
 import Button from '.'
 import DocTemplate from '../../Utils/StorybookDocTemplate'
@@ -29,13 +28,13 @@ export default {
     color: {
       description:
         '버튼 텍스트의 색을 지정합니다. 올바른 색상 문자열이 아닐 경우 테마의 색상을 따릅니다.',
-      defaultValue: twTheme`colors.black`,
+      defaultValue: 'black',
       table: {
         type: {
           summary: 'color',
         },
         defaultValue: {
-          summary: twTheme`colors.black`,
+          summary: 'black',
         },
       },
       control: 'color',
@@ -60,12 +59,13 @@ interface StoryButtonProps {
 
 const buttonTemplate: Story<StoryButtonProps> = (
   args,
-  { globals: { locale } }
+  { globals: { locale, theme } }
 ) => {
   const { color } = args
+  const cssStyle = theme === 'default' && css({ color })
   const text = locale !== 'ko' ? 'Button' : args.children
 
-  return <Button customTheme={css({ color })}>{text}</Button>
+  return <Button css={cssStyle}>{text}</Button>
 }
 
 export const DefaultButton = buttonTemplate

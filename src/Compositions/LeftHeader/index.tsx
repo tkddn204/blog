@@ -1,43 +1,37 @@
 /** @jsx jsx */
-import { FC, useState } from 'react'
-import tw from 'twin.macro'
+import { FCEP, useState } from 'react'
 import { css, jsx } from '@emotion/core'
 import { motion } from 'framer-motion'
-import useDarkStyle, {
-  DarkStyledProps,
-  DarkStyleType,
-} from '../../Hooks/useDarkStyle'
 
 import Logo from '../../Components/Logo'
-import MemberMenu from '../../Components/LoginButton'
+import MemberMenu from '../LoginButton'
 import { store } from '../../Application/Store'
 
-const style: DarkStyleType = {
-  dark: tw``,
-  defaultDark: tw``,
-}
-
 const LeftHeaderStyle = css`
-  ${tw`flex flex-row w-1/3`}
+  display: flex;
+  width: 40%;
 `
 
 const LogoStyle = css`
-  ${tw`z-10`}
+  z-index: 10;
 `
 
 const memberMenuContainerStyle = css`
-  ${tw`flex items-center w-full relative overflow-hidden`}
-  margin-left: -24px;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  margin: 0 0 0 -1.4rem;
+  background: transparent;
 `
 
 const memberMenuStyle = css`
-  ${tw`absolute pl-3`}
+  position: absolute;
+  padding: 0 0 0 0.76rem;
 `
 
-type Props = DarkStyledProps
-
-const LeftHeader: FC<Props> = ({ addStyleType, customTheme }) => {
-  const darkStyle = useDarkStyle(style, addStyleType, customTheme)
+const LeftHeader: FCEP = ({ className }) => {
   const { auth } = store.getState().firebase
   const [showMemberMenu, setShowMemberMenu] = useState(false)
 
@@ -46,12 +40,13 @@ const LeftHeader: FC<Props> = ({ addStyleType, customTheme }) => {
 
   return (
     <div
-      css={[LeftHeaderStyle, darkStyle]}
+      css={LeftHeaderStyle}
       onFocus={showMenu}
       onMouseOver={showMenu}
       onMouseLeave={hideMenu}
       onTouchStart={showMenu}
       onTouchEnd={hideMenu}
+      className={className}
     >
       <Logo css={LogoStyle} />
       <div css={memberMenuContainerStyle}>
@@ -63,7 +58,7 @@ const LeftHeader: FC<Props> = ({ addStyleType, customTheme }) => {
             hide: { left: -120 },
           }}
           transition={{ ease: 'easeOut', duration: 0.5 }}
-          css={[memberMenuStyle]}
+          css={memberMenuStyle}
         >
           <MemberMenu auth={auth} />
         </motion.div>
