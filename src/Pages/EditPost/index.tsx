@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FCEP } from 'react'
 // import { useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
@@ -11,7 +11,7 @@ import RightHeader from '../../Compositions/RightHeader'
 import LeftHeader from '../../Compositions/LeftHeader'
 import PostEditor from '../../Compositions/PostEditor'
 
-const EditPost: FC = () => {
+const EditPost: FCEP = ({ className }) => {
   // TODO: 편집 기능 추가
   // const { postId } = useParams()
   // const [post, postContent, fetchState] = usePost(postId)
@@ -23,7 +23,7 @@ const EditPost: FC = () => {
   // if (!postId) return <Redirect to={{ pathname: '/' }} />
 
   return (
-    <Layout>
+    <Layout className={className}>
       <Header>
         <LeftHeader />
         <RightHeader />

@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { FCEP, StrictMode } from 'react'
+import { FCEP } from 'react'
 import 'github-markdown-css/github-markdown.css'
 import { css, jsx } from '@emotion/core'
 import ReactMarkdown from 'react-markdown'
@@ -63,23 +63,21 @@ const PostView: FCEP<Props> = ({ post, postContent, fetchState }) => {
       break
     case FetchState.loaded:
       Content = (
-        <StrictMode>
-          <Section css={postStyle}>
-            <h1 css={postTitleStyle}>{post && post.title}</h1>
-            <div css={postDateContainerStyle}>
-              <span css={cssPostCreateDateStyle}>
-                {post && moment(post.createdDate).format('YYYY. M. D.')}
-              </span>
-              <span css={cssPostModifiedDateStyle}>
-                {post && moment(post.modifiedDate).fromNow()}
-              </span>
-            </div>
-            <ReactMarkdown
-              className="markdown-body"
-              source={postContent && postContent.content}
-            />
-          </Section>
-        </StrictMode>
+        <Section css={postStyle}>
+          <h1 css={postTitleStyle}>{post && post.title}</h1>
+          <div css={postDateContainerStyle}>
+            <span css={cssPostCreateDateStyle}>
+              {post && moment(post.createdDate).format('YYYY. M. D.')}
+            </span>
+            <span css={cssPostModifiedDateStyle}>
+              {post && moment(post.modifiedDate).fromNow()}
+            </span>
+          </div>
+          <ReactMarkdown
+            className="markdown-body"
+            source={postContent && postContent.content}
+          />
+        </Section>
       )
       break
     default:

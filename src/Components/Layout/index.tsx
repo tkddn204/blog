@@ -5,6 +5,7 @@ import useStyle from '../../Hooks/useStyle'
 
 const style = () => css`
   display: flex;
+  align-items: center;
   flex-direction: column;
   min-height: 100vh;
   background: white;

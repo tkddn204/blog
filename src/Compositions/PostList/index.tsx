@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 import Loading from '../../Components/Loading'
 import { FetchState, Post } from '../../Types/firestore.schema'
 import PostItem from './PostItem'
-import Article from '../../Components/Article'
 import Section from '../../Components/Section'
 
 interface Props {
@@ -32,14 +31,14 @@ const PostList: FCEP<Props> = ({ postList, fetchState, className }) => {
       Content = '텅 비었음'
       break
     default:
-      Content = (
-        <Section>
-          <Loading />
-        </Section>
-      )
+      Content = <Loading />
   }
 
-  return <Article className={className}>{Content}</Article>
+  return (
+    <Section className={className} custom={['center']}>
+      {Content}
+    </Section>
+  )
 }
 
 export default PostList

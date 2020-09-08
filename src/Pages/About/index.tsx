@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FCEP } from 'react'
 
 import { useTranslation } from 'react-i18next'
 import Layout from '../../Components/Layout'
@@ -8,10 +8,10 @@ import Article from '../../Components/Article'
 import RightHeader from '../../Compositions/RightHeader'
 import LeftHeader from '../../Compositions/LeftHeader'
 
-const About: FC = () => {
+const About: FCEP = ({ className }) => {
   const { t } = useTranslation()
   return (
-    <Layout>
+    <Layout className={className}>
       <Header>
         <LeftHeader />
         <RightHeader />

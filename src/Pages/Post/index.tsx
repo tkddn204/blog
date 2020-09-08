@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FCEP } from 'react'
 import { Redirect, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
@@ -11,7 +11,7 @@ import usePost from '../../Hooks/usePost'
 import LeftHeader from '../../Compositions/LeftHeader'
 import PostView from '../../Compositions/PostView'
 
-const Post: FC = () => {
+const Post: FCEP = ({ className }) => {
   const { postId } = useParams()
   const [post, postContent, fetchState] = usePost(postId)
   const { t } = useTranslation()
@@ -20,7 +20,7 @@ const Post: FC = () => {
   if (!postId) return <Redirect to={{ pathname: '/' }} />
 
   return (
-    <Layout>
+    <Layout className={className}>
       <Header>
         <LeftHeader />
         <RightHeader />

@@ -9,6 +9,8 @@ const style = (theme: ThemeType) => css`
   align-items: center;
   justify-content: space-between;
   position: relative;
+  width: 100%;
+  max-width: 700px;
   height: 4rem;
   padding: 0 1.25rem 0 1.25rem;
   margin: 1.25rem 2.5rem 0 2.5rem;

@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { FCEP, StrictMode } from 'react'
+import React, { FCEP } from 'react'
 import { css, jsx } from '@emotion/core'
 import { useDispatch } from 'react-redux'
 import { FirebaseReducer } from 'react-redux-firebase'
@@ -33,14 +33,14 @@ const MemberMenu: FCEP<Props> = ({ auth, className }) => {
           {!auth.isEmpty ? (
             'Logout'
           ) : (
-            <StrictMode>
+            <React.Fragment>
               <GoogleLogo
                 css={css`
                   margin: 0 0.75rem 0 0;
                 `}
               />
               Login
-            </StrictMode>
+            </React.Fragment>
           )}
         </Button>
       )}

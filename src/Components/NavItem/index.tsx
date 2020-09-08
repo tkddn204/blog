@@ -11,6 +11,7 @@ const style = (theme: ThemeType) => css`
   justify-content: center;
   margin: 0 1rem 0 0;
   font-size: medium;
+  text-decoration: none;
   background: transparent;
   color: black;
   transition-property: all;
@@ -39,11 +40,20 @@ const matchLinkStyle = css`
 
 interface Props {
   link: string
+  activeOnlyWhenExact?: boolean
 }
 
-const Nav: FCEP<Props> = ({ link, children, className }) => {
+const NavItem: FCEP<Props> = ({
+  link,
+  activeOnlyWhenExact,
+  children,
+  className,
+}) => {
   const cssStyle = useStyle(style, darkStyle)
-  const match = useRouteMatch(link)
+  const match = useRouteMatch({
+    path: link,
+    exact: activeOnlyWhenExact,
+  })
   return (
     <Link
       to={link}
@@ -55,4 +65,4 @@ const Nav: FCEP<Props> = ({ link, children, className }) => {
   )
 }
 
-export default Nav
+export default NavItem
