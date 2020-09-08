@@ -27,9 +27,6 @@ const PostList: FCEP<Props> = ({ postList, fetchState, className }) => {
         </Link>
       ))
       break
-    case FetchState.empty:
-      Content = '텅 비었음'
-      break
     default:
       Content = <Loading />
   }

@@ -58,9 +58,6 @@ const PostView: FCEP<Props> = ({ post, postContent, fetchState }) => {
 
   let Content
   switch (fetchState) {
-    case FetchState.empty:
-      Content = '앗.. 내용이 비어있어요!'
-      break
     case FetchState.loaded:
       Content = (
         <Section css={postStyle}>

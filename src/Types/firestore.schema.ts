@@ -1,3 +1,9 @@
+export interface About {
+  id: string
+  content: string
+  createdDate: string
+}
+
 export interface Post {
   id: string
   title: string

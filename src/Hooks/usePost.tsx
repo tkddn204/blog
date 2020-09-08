@@ -7,6 +7,7 @@ import {
 } from 'react-redux-firebase'
 import { FetchState, Post, PostContent } from '../Types/firestore.schema'
 import { RootState } from '../Application/Store'
+import { isExistObjectKey } from '../Utils'
 
 type PostQueryType = (postId: string) => ReduxFirestoreQuerySetting[]
 const postQuery: PostQueryType = (postId: string) => {
@@ -24,12 +25,12 @@ const selector = ({ firestore }: RootState) => {
   let post = {}
   let postContent = {}
 
-  if (data && Object.keys(data).length !== 0) {
-    if (data.post && Object.keys(data.post).length !== 0) {
+  if (isExistObjectKey(data)) {
+    if (isExistObjectKey(data.post)) {
       post = data.post[Object.keys(data.post)[0]]
     }
 
-    if (data.postContent && Object.keys(data.postContent).length !== 0) {
+    if (isExistObjectKey(data.postContent)) {
       postContent = data.postContent[Object.keys(data.postContent)[0]]
     }
   }
@@ -39,7 +40,7 @@ const selector = ({ firestore }: RootState) => {
 type PostReturnType = [Post, PostContent, FetchState]
 type PostFunctionReturnType = (postId: string) => PostReturnType
 
-const usePostList: PostFunctionReturnType = (postId: string) => {
+const usePost: PostFunctionReturnType = (postId: string) => {
   useFirestoreConnect(postQuery(postId || ''))
   const { post, postContent } = useSelector(selector)
 
@@ -57,4 +58,4 @@ const usePostList: PostFunctionReturnType = (postId: string) => {
   return [post, postContent, fetchState] as PostReturnType
 }
 
-export default usePostList
+export default usePost

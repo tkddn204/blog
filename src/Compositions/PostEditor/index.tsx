@@ -9,22 +9,22 @@ import { Editor } from '@toast-ui/react-editor'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 
-import Article from '../../Components/Article'
 import Button from '../../Components/Button'
 import { Post } from '../../Types/firestore.schema'
 import { addPost } from '../../Features/post/postThunk'
 import { htmlToText } from '../../Utils'
+
+const formStyle = css`
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+`
 
 const titleInputStyle = css`
   padding-bottom: 0.25rem;
   margin-bottom: 0.75rem;
   font-size: 1.5rem;
   border-bottom-width: 1px;
-`
-
-const formStyle = css`
-  display: flex;
-  flex-direction: column;
 `
 
 const submitButtonContainerStyle = css`
@@ -52,29 +52,31 @@ const PostEditor: FCEP = ({ className }) => {
   }
 
   return (
-    <Article className={className}>
-      <form onSubmit={handleSubmit(onSubmit)} css={formStyle}>
-        <input
-          name="title"
-          placeholder="제목"
-          css={titleInputStyle}
-          ref={register({ required: true, maxLength: 50 })}
-        />
-        <Editor
-          language="ko-kr"
-          previewStyle="tab"
-          initialEditType="markdown"
-          height="400px"
-          ref={editorRef}
-          usageStatistics={false}
-        />
-        {errors.title && <span>제목은 꼭 써주서야 합니다!</span>}
-        {/* {errors.editor && <span>내용을 입력해주세요!</span>} */}
-        <div css={submitButtonContainerStyle}>
-          <Button submit>저장</Button>
-        </div>
-      </form>
-    </Article>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      css={formStyle}
+      className={className}
+    >
+      <input
+        name="title"
+        placeholder="제목"
+        css={titleInputStyle}
+        ref={register({ required: true, maxLength: 50 })}
+      />
+      <Editor
+        language="ko-kr"
+        previewStyle="vertical"
+        initialEditType="markdown"
+        height="500px"
+        ref={editorRef}
+        usageStatistics={false}
+      />
+      {errors.title && <span>제목은 꼭 써주서야 합니다!</span>}
+      {/* {errors.editor && <span>내용을 입력해주세요!</span>} */}
+      <div css={submitButtonContainerStyle}>
+        <Button submit>저장</Button>
+      </div>
+    </form>
   )
 }
 

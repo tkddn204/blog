@@ -44,6 +44,9 @@ const persistedReducer = persistReducer(
   })
 )
 
+/**
+ * 리듀서 합치기!
+ */
 const rootReducer = combineReducers({
   firebase: firebaseReducer,
   firestore: firestoreReducer,

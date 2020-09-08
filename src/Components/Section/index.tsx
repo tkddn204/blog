@@ -6,8 +6,9 @@ import useStyle, { ThemedStyles } from '../../Hooks/useStyle'
 const style = () => css`
   display: flex;
   flex-direction: column;
-  margin: 0.75rem 0 0.75rem 0;
+  margin: 1rem 0;
   background: transparent;
+  width: 100%;
 `
 
 const darkStyle = () => css`
