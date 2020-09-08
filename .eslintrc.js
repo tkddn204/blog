@@ -52,7 +52,8 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': ['error'],
     'no-console': ['error'],
     'linebreak-style': 'off',
-    'jsx-a11y/accessible-emoji': 0
+    'jsx-a11y/accessible-emoji': 0,
+    'no-param-reassign': ["error", { "props": false }]
   },
   overrides: [
     {

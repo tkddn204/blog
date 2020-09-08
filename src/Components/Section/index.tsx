@@ -9,6 +9,8 @@ const style = () => css`
   margin: 1rem 0;
   background: transparent;
   width: 100%;
+  max-width: 1000px;
+  padding: 0 5rem;
 `
 
 const darkStyle = () => css`

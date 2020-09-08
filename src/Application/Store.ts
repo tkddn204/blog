@@ -27,6 +27,7 @@ import { constants as rfConstants, firestoreReducer } from 'redux-firestore'
 
 import localeReducer from '../Features/locale/localeSlice'
 import themeReducer from '../Features/theme/themeSlice'
+import postReducer from '../Features/post/postSlice'
 
 /**
  * redux persist 설정
@@ -51,6 +52,7 @@ const rootReducer = combineReducers({
   firebase: firebaseReducer,
   firestore: firestoreReducer,
   persist: persistedReducer,
+  post: postReducer,
 })
 
 /**

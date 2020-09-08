@@ -1,8 +1,7 @@
 /** @jsx jsx */
-import { FCEP } from 'react'
+import React, { FCEP } from 'react'
 import 'github-markdown-css/github-markdown.css'
 import { css, jsx } from '@emotion/core'
-import ReactMarkdown from 'react-markdown'
 import moment from 'moment'
 import useStyle from '../../Hooks/useStyle'
 import { FetchState, Post, PostContent } from '../../Types/firestore.schema'
@@ -10,10 +9,12 @@ import Article from '../../Components/Article'
 import Section from '../../Components/Section'
 import Loading from '../../Components/Loading'
 import { ThemeType } from '../../Types/theme'
+import MarkdownViewer from '../../Components/MarkdownViwer'
 
-const postStyle = css`
-  width: 100%;
-  padding: 0 5rem 0 5rem;
+const postContainerStyle = css`
+  flex: 1;
+  max-width: 1000px;
+  padding: 0 5rem;
 `
 
 const postTitleStyle = css`
@@ -52,7 +53,12 @@ interface Props {
   fetchState: FetchState
 }
 
-const PostView: FCEP<Props> = ({ post, postContent, fetchState }) => {
+const PostView: FCEP<Props> = ({
+  post,
+  postContent,
+  fetchState,
+  className,
+}) => {
   const cssPostCreateDateStyle = useStyle(postCreateDateStyle)
   const cssPostModifiedDateStyle = useStyle(postModifiedDateStyle)
 
@@ -60,7 +66,7 @@ const PostView: FCEP<Props> = ({ post, postContent, fetchState }) => {
   switch (fetchState) {
     case FetchState.loaded:
       Content = (
-        <Section css={postStyle}>
+        <React.Fragment>
           <h1 css={postTitleStyle}>{post && post.title}</h1>
           <div css={postDateContainerStyle}>
             <span css={cssPostCreateDateStyle}>
@@ -70,11 +76,8 @@ const PostView: FCEP<Props> = ({ post, postContent, fetchState }) => {
               {post && moment(post.modifiedDate).fromNow()}
             </span>
           </div>
-          <ReactMarkdown
-            className="markdown-body"
-            source={postContent && postContent.content}
-          />
-        </Section>
+          <MarkdownViewer source={postContent && postContent.content} />
+        </React.Fragment>
       )
       break
     default:
@@ -86,7 +89,11 @@ const PostView: FCEP<Props> = ({ post, postContent, fetchState }) => {
       break
   }
 
-  return <Article>{Content}</Article>
+  return (
+    <Article css={postContainerStyle} className={className}>
+      {Content}
+    </Article>
+  )
 }
 
 export default PostView

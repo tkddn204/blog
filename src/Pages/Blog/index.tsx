@@ -1,4 +1,5 @@
 import React, { FCEP } from 'react'
+import { useParams } from 'react-router-dom'
 
 import { useTranslation } from 'react-i18next'
 import Layout from '../../Components/Layout'
@@ -10,8 +11,10 @@ import usePostList from '../../Hooks/usePostList'
 import LeftHeader from '../../Compositions/LeftHeader'
 
 const Blog: FCEP = ({ className }) => {
-  const [postList, fetchState] = usePostList()
+  const { listPage } = useParams()
+  const [postList, fetchState] = usePostList(listPage * 10)
   const { t } = useTranslation()
+
   return (
     <Layout className={className}>
       <Header>

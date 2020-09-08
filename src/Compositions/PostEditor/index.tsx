@@ -10,8 +10,8 @@ import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 
 import Button from '../../Components/Button'
-import { Post } from '../../Types/firestore.schema'
-import { addPost } from '../../Features/post/postThunk'
+import { Post, PostContent } from '../../Types/firestore.schema'
+import { addPostThunk } from '../../Features/post/postThunk'
 import { htmlToText } from '../../Utils'
 
 const formStyle = css`
@@ -33,7 +33,12 @@ const submitButtonContainerStyle = css`
   margin-top: 0.75rem;
 `
 
-const PostEditor: FCEP = ({ className }) => {
+interface Props {
+  postObj?: Post
+  postContentObj?: PostContent
+}
+
+const PostEditor: FCEP<Props> = ({ postObj, postContentObj, className }) => {
   const { register, handleSubmit, errors } = useForm()
   const editorRef = useRef({} as Editor)
   const dispatch = useDispatch()
@@ -42,12 +47,12 @@ const PostEditor: FCEP = ({ className }) => {
     const editorInstance = editorRef.current.getInstance()
     const text = htmlToText(editorInstance.getHtml())
     const postContent = editorInstance.getMarkdown()
-    const post: Partial<Post> = {
+    const newPost: Partial<Post> = {
       title: data.title,
       summary: text.substr(0, text.length > 100 ? 100 : text.length),
     }
-    if (post.title && postContent.length) {
-      dispatch(addPost(post, postContent))
+    if (newPost.title && postContent.length) {
+      dispatch(addPostThunk({ newPost, postContent }))
     }
   }
 
@@ -61,12 +66,14 @@ const PostEditor: FCEP = ({ className }) => {
         name="title"
         placeholder="제목"
         css={titleInputStyle}
+        value={postObj?.title}
         ref={register({ required: true, maxLength: 50 })}
       />
       <Editor
         language="ko-kr"
         previewStyle="vertical"
         initialEditType="markdown"
+        initialValue={postContentObj?.content}
         height="500px"
         ref={editorRef}
         usageStatistics={false}

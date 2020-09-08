@@ -25,7 +25,7 @@ const Post: FCEP = ({ className }) => {
         <LeftHeader />
         <RightHeader />
       </Header>
-      <Section>
+      <Section custom={['center']}>
         <PostView
           post={post}
           postContent={postContent}

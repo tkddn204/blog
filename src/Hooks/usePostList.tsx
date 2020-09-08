@@ -1,16 +1,26 @@
 import { useSelector } from 'react-redux'
-import { isEmpty, isLoaded, useFirestoreConnect } from 'react-redux-firebase'
+import {
+  isEmpty,
+  isLoaded,
+  ReduxFirestoreQuerySetting,
+  useFirestoreConnect,
+} from 'react-redux-firebase'
 import { FetchState, Post } from '../Types/firestore.schema'
 import { RootState } from '../Application/Store'
 
-const query = () => [{ collection: 'post', limitTo: 10 }]
+const query = (startAt = 0): ReduxFirestoreQuerySetting => ({
+  collection: 'post',
+  limit: 10,
+  orderBy: ['createdDate', 'desc'],
+  startAt,
+})
 const selector = ({ firestore }: RootState) => firestore.ordered.post
 
 type PostListReturnType = [Post[], FetchState]
-type PostListFunctionReturnType = () => PostListReturnType
+type PostListFunctionReturnType = (startAt?: number) => PostListReturnType
 
-const usePostList: PostListFunctionReturnType = () => {
-  useFirestoreConnect(query)
+const usePostList: PostListFunctionReturnType = (startAt = 0) => {
+  useFirestoreConnect(query(startAt))
   const postList = useSelector(selector)
 
   let fetchState: FetchState

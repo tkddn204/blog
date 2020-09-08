@@ -24,13 +24,14 @@ import { commonTheme } from './Theme'
 firebase.initializeApp(firebaseConfig)
 firebase.auth()
 firebase.storage()
-const firestore = firebase.firestore()
-if (window.location.hostname === 'localhost') {
-  firestore.settings({
-    host: 'localhost:5002',
-    ssl: false,
-  })
-}
+firebase.firestore()
+// const firestore = firebase.firestore()
+// if (window.location.hostname === 'localhost') {
+//   firestore.settings({
+//     host: 'localhost:5002',
+//     ssl: false,
+//   })
+// }
 
 const Providers: FC = ({ children }) => (
   <React.StrictMode>

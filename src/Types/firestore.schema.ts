@@ -1,7 +1,12 @@
+export interface Profile {
+  role: string
+}
+
 export interface About {
   id: string
   content: string
   createdDate: string
+  modifiedDate: string
 }
 
 export interface Post {

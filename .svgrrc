@@ -4,5 +4,6 @@
   memo: true,
   svgProps: {
     "fill": "currentColor"
-  }
+  },
+  props: "none"
 }

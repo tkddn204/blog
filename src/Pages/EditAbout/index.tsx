@@ -1,23 +1,21 @@
 import React, { FCEP } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useParams } from 'react-router-dom'
 
 import { useSelector } from 'react-redux'
+import { AuthSelector, ProfileSelector } from '../../Features/Selectors'
 import Layout from '../../Components/Layout'
 import Header from '../../Components/Header'
 import Footer from '../../Components/Footer'
 import Section from '../../Components/Section'
 import RightHeader from '../../Compositions/RightHeader'
 import LeftHeader from '../../Compositions/LeftHeader'
-import PostEditor from '../../Compositions/PostEditor'
-import { AuthSelector, ProfileSelector } from '../../Features/Selectors'
 import Loading from '../../Components/Loading'
-import usePost from '../../Hooks/usePost'
+import AboutEditor from '../../Compositions/AboutEditor'
+import useAbout from '../../Hooks/useAbout'
 import { FetchState } from '../../Types/firestore.schema'
 
 const EditPost: FCEP = ({ className }) => {
-  const { postId } = useParams()
-  const [post, postContent, fetchState] = usePost(postId)
+  const [about, fetchState] = useAbout()
   const { t } = useTranslation()
   const auth = useSelector(AuthSelector)
   const profile = useSelector(ProfileSelector)
@@ -28,10 +26,10 @@ const EditPost: FCEP = ({ className }) => {
   } else if (auth.isLoaded) {
     if (auth.isEmpty) {
       Content = '로그인해주세요'
-    } else if (postId && fetchState !== FetchState.empty) {
-      Content = <PostEditor postObj={post} postContentObj={postContent} />
+    } else if (fetchState !== FetchState.empty) {
+      Content = <AboutEditor aboutObj={about} />
     } else {
-      Content = <PostEditor />
+      Content = <Loading />
     }
   } else {
     Content = <Loading />

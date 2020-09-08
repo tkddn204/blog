@@ -2,15 +2,15 @@
 import { FCEP } from 'react'
 import 'github-markdown-css/github-markdown.css'
 import { css, jsx } from '@emotion/core'
-import ReactMarkdown from 'react-markdown'
-import { FetchState, About } from '../../Types/firestore.schema'
+import { About, FetchState } from '../../Types/firestore.schema'
 import Article from '../../Components/Article'
-import Section from '../../Components/Section'
 import Loading from '../../Components/Loading'
+import MarkdownViewer from '../../Components/MarkdownViwer'
 
-const aboutStyle = css`
-  width: 100%;
-  padding: 0 5rem 0 5rem;
+const aboutContainerStyle = css`
+  flex: 1;
+  max-width: 1000px;
+  padding: 0 5rem;
 `
 
 interface Props {
@@ -22,25 +22,14 @@ const AboutView: FCEP<Props> = ({ aboutObj, fetchState }) => {
   let Content
   switch (fetchState) {
     case FetchState.loaded:
-      Content = (
-        <Section css={aboutStyle}>
-          <ReactMarkdown
-            className="markdown-body"
-            source={aboutObj && aboutObj.content}
-          />
-        </Section>
-      )
+      Content = <MarkdownViewer source={aboutObj && aboutObj.content} />
       break
     default:
-      Content = (
-        <Section>
-          <Loading />
-        </Section>
-      )
+      Content = <Loading />
       break
   }
 
-  return <Article>{Content}</Article>
+  return <Article css={aboutContainerStyle}>{Content}</Article>
 }
 
 export default AboutView
