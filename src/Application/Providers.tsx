@@ -26,7 +26,6 @@ firebase.initializeApp(firebaseConfig)
 firebase.auth()
 firebase.storage()
 firebase.firestore()
-firebase.analytics()
 // const firestore = firebase.firestore()
 // if (window.location.hostname === 'localhost') {
 //   firestore.settings({
@@ -34,6 +33,9 @@ firebase.analytics()
 //     ssl: false,
 //   })
 // }
+if (process.env.NODE_ENV !== 'test') {
+  firebase.analytics()
+}
 
 const Providers: FC = ({ children }) => (
   <React.StrictMode>
