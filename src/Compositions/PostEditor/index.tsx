@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { FCEP, useRef } from 'react'
+import { FCEP, useRef, useState } from 'react'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'codemirror/lib/codemirror.css'
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -11,7 +11,7 @@ import { useDispatch } from 'react-redux'
 
 import Button from '../../Components/Button'
 import { Post, PostContent } from '../../Types/firestore.schema'
-import { addPostThunk } from '../../Features/post/postThunk'
+import { addPostThunk, updatePostThunk } from '../../Features/post/postThunk'
 import { htmlToText } from '../../Utils'
 
 const formStyle = css`
@@ -27,6 +27,13 @@ const titleInputStyle = css`
   border-bottom-width: 1px;
 `
 
+const summaryInputStyle = css`
+  padding-bottom: 0.25rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.75rem;
+  border-bottom-width: 1px;
+`
+
 const submitButtonContainerStyle = css`
   display: flex;
   justify-content: end;
@@ -39,23 +46,52 @@ interface Props {
 }
 
 const PostEditor: FCEP<Props> = ({ postObj, postContentObj, className }) => {
+  const [titleInputValue, setTitleInputValue] = useState(postObj?.title)
+  const [summaryInputValue, setSummaryInputValue] = useState(postObj?.summary)
   const { register, handleSubmit, errors } = useForm()
   const editorRef = useRef({} as Editor)
   const dispatch = useDispatch()
 
   const onSubmit = (data: Partial<Post>) => {
     const editorInstance = editorRef.current.getInstance()
-    const text = htmlToText(editorInstance.getHtml())
-    const postContent = editorInstance.getMarkdown()
-    const newPost: Partial<Post> = {
-      title: data.title,
-      summary: text.substr(0, text.length > 100 ? 100 : text.length),
-    }
-    if (newPost.title && postContent.length) {
-      dispatch(addPostThunk({ newPost, postContent }))
+
+    const contentRawText = htmlToText(editorInstance.getHtml())
+    const summary = data.summary
+      ? data.summary
+      : contentRawText.substr(
+          0,
+          contentRawText.length > 100 ? 100 : contentRawText.length
+        )
+    const content = editorInstance.getMarkdown()
+
+    if (postObj?.id) {
+      // update
+      const post: Partial<Post> = {
+        ...postObj,
+        title: data.title,
+        summary,
+      }
+      const postContent: Partial<PostContent> = {
+        ...postContentObj,
+        content,
+      }
+      if (post.title && content.length) {
+        dispatch(updatePostThunk({ post, postContent }))
+      }
+    } else {
+      // add
+      const newPost: Partial<Post> = {
+        title: data.title,
+        summary,
+      }
+      const newPostContent: Partial<PostContent> = {
+        content,
+      }
+      if (newPost.title && content.length) {
+        dispatch(addPostThunk({ newPost, postContent: newPostContent }))
+      }
     }
   }
-
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -66,8 +102,17 @@ const PostEditor: FCEP<Props> = ({ postObj, postContentObj, className }) => {
         name="title"
         placeholder="제목"
         css={titleInputStyle}
-        value={postObj?.title}
+        value={titleInputValue}
+        onChange={(e) => setTitleInputValue(e.target.value)}
         ref={register({ required: true, maxLength: 50 })}
+      />
+      <input
+        name="summary"
+        placeholder="제목"
+        css={summaryInputStyle}
+        value={summaryInputValue}
+        onChange={(e) => setSummaryInputValue(e.target.value)}
+        ref={register({ maxLength: 100 })}
       />
       <Editor
         language="ko-kr"

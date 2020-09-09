@@ -35,14 +35,13 @@ export const getPostThunk = createAsyncThunk<
 
     return { post: resPost, postContent: resPostContent }
   } catch (error) {
-    // console.error(error)
     return rejectWithValue(error)
   }
 })
 
 interface AddPostArgs {
   newPost: Partial<Post>
-  postContent: string
+  postContent: Partial<PostContent>
 }
 
 export const addPostThunk = createAsyncThunk<
@@ -61,7 +60,7 @@ export const addPostThunk = createAsyncThunk<
       await newPostRef.set({
         ...newPost,
         id: postId,
-        summary: newPost.summary ? newPost.summary : postContent.substr(0, 100),
+        summary: newPost.summary,
         createdDate: now,
         modifiedDate: now,
       })
@@ -72,11 +71,48 @@ export const addPostThunk = createAsyncThunk<
       await newPostContentRef.set({
         id: postContentId,
         postId,
-        content: postContent,
+        content: postContent.content,
       })
       return 'success'
     } catch (error) {
-      // console.error(error)
+      return rejectWithValue(error)
+    }
+  }
+)
+
+interface UpdatePostArgs {
+  post: Partial<Post>
+  postContent: Partial<PostContent>
+}
+
+export const updatePostThunk = createAsyncThunk<
+  PostFetchReturnState,
+  UpdatePostArgs,
+  FirebaseThunkApiConfig
+>(
+  'post/update',
+  async ({ post, postContent }: UpdatePostArgs, { rejectWithValue }) => {
+    const firestore = firebase.firestore()
+    try {
+      // Post
+      const postRef = firestore.collection('post').doc(post.id)
+      const now = moment.now()
+      await postRef.update({
+        ...post,
+        modifiedDate: now,
+      })
+
+      // PostContent
+      const postContentList = await firestore
+        .collection('postContent')
+        .where('postId', '==', postContent.postId)
+        .get()
+      if (postContentList.size > 0) {
+        await postContentList.docs[0].ref.update(postContent)
+        return 'success'
+      }
+      return 'FailPostContent'
+    } catch (error) {
       return rejectWithValue(error)
     }
   }

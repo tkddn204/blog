@@ -50,7 +50,7 @@ const RightHeader: FCEP = ({ className }) => {
         <NavItem key="nav-about" link="/about">
           About
         </NavItem>
-        <NavItem key="nav-blog" link="/blog">
+        <NavItem key="nav-blog" link="/blog" matchLink={['/blog', '/post']}>
           Blog
         </NavItem>
       </NavList>

@@ -16,11 +16,11 @@ const postItemStyle = (theme: ThemeType) => css`
   padding: 0.75rem;
   cursor: pointer;
 
-  &:first-child {
+  &:first-of-type {
     margin-top: 0;
   }
 
-  &:last-child {
+  &:last-of-type {
     margin-bottom: 0;
   }
 

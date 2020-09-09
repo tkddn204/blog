@@ -40,18 +40,20 @@ const matchLinkStyle = css`
 
 interface Props {
   link: string
+  matchLink?: string | string[]
   activeOnlyWhenExact?: boolean
 }
 
 const NavItem: FCEP<Props> = ({
   link,
+  matchLink,
   activeOnlyWhenExact,
   children,
   className,
 }) => {
   const cssStyle = useStyle(style, darkStyle)
   const match = useRouteMatch({
-    path: link,
+    path: matchLink || link,
     exact: activeOnlyWhenExact,
   })
   return (

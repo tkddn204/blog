@@ -5,6 +5,7 @@ import useStyle from '../../Hooks/useStyle'
 
 const style = () => css`
   background: rgba(0, 0, 0, 0.25);
+  height: 24px;
   width: 0.5px;
 `
 
