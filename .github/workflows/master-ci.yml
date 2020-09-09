@@ -2,7 +2,7 @@ name: Test & Storybook Deploy
 on: [push]
 jobs:
   test:
-    name: Build
+    name: Test & Storybook Deploy
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -21,11 +21,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: yarn test --coverage
-  storybook:
-    name: Storybook Deploy
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
       - name: deploy Storybook
         uses: chromaui/action@v1
         with:
