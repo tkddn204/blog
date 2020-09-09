@@ -1,8 +1,8 @@
 name: Test & Storybook Deploy
 on: [push]
 jobs:
-  release:
-    name: Test & Storybook Deploy
+  test:
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -21,7 +21,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: yarn test --coverage
-      - uses: chromaui/action@v1
+  storybook:
+    name: Storybook Deploy
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: deploy Storybook
+        uses: chromaui/action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}

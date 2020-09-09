@@ -6,6 +6,7 @@ export const firebaseConfig = {
   storageBucket: 'tkddn204-private.appspot.com',
   messagingSenderId: '411131303622',
   appId: '1:411131303622:web:95c6a6686cd96229f429c7',
+  measurementId: 'G-2XP4J0GS2F',
 }
 
 export const reduxFirebaseConfig = {

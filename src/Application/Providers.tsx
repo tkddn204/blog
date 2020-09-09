@@ -8,6 +8,7 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
 import 'firebase/storage'
+import 'firebase/analytics'
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
 import { createFirestoreInstance } from 'redux-firestore'
 import { PersistGate } from 'redux-persist/integration/react'
@@ -25,6 +26,7 @@ firebase.initializeApp(firebaseConfig)
 firebase.auth()
 firebase.storage()
 firebase.firestore()
+firebase.analytics()
 // const firestore = firebase.firestore()
 // if (window.location.hostname === 'localhost') {
 //   firestore.settings({
