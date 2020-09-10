@@ -1,17 +1,20 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { FetchState, Post, PostContent } from '../Types/firestore.schema'
+import { FetchState } from '../Types/firestore.schema'
 import { getPostThunk } from '../Features/post/postThunk'
 import { PostSelector } from '../Features/Selectors'
+import { PostState } from '../Features/post/postSlice'
 
-type PostReturnType = [Post, PostContent, FetchState]
+type PostReturnType = PostState & { fetchState: FetchState }
 type PostFunctionReturnType = (postId: string) => PostReturnType
 
 const usePost: PostFunctionReturnType = (postId: string) => {
   const dispatch = useDispatch()
   const postState = useSelector(PostSelector)
   useEffect(() => {
-    dispatch(getPostThunk({ postId }))
+    if (postId) {
+      dispatch(getPostThunk({ postId }))
+    }
   }, [dispatch, postId])
 
   let fetchState: FetchState
@@ -20,13 +23,13 @@ const usePost: PostFunctionReturnType = (postId: string) => {
       postState.postData.post && postState.postData.postContent
         ? FetchState.loaded
         : FetchState.empty
+  } else if (postState.error) {
+    fetchState = FetchState.error
   } else {
     fetchState = FetchState.loading
   }
 
-  const { post } = postState.postData
-  const { postContent } = postState.postData
-  return [post, postContent, fetchState] as PostReturnType
+  return { ...postState, fetchState }
 }
 
 export default usePost

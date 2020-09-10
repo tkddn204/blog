@@ -33,6 +33,8 @@ const RightHeader: FCEP = ({ className }) => {
       history.push('/about/edit')
     } else if (path.startsWith('/post') && path.length >= 6) {
       history.push(`/post/edit/${path.substring(6)}`)
+    } else if (path === '/' || path.startsWith('/blog')) {
+      history.push(`/post/edit`)
     }
   }
 

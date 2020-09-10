@@ -10,7 +10,7 @@ import EditAbout from '../Pages/EditAbout'
 export const routes = [
   { path: ['/', '/blog'], exact: true, Component: Blog, name: 'Blog' },
   { path: '/blog/:listPage?', Component: Blog, name: 'Blog' },
-  { path: '/post/edit/:postId', Component: EditPost, name: 'EditPost' },
+  { path: '/post/edit/:postId?', Component: EditPost, name: 'EditPost' },
   { path: '/post/:postId', Component: Post, name: 'Post' },
   { path: '/about', exact: true, Component: About, name: 'About' },
   { path: '/about/edit', exact: true, Component: EditAbout, name: 'EditAbout' },

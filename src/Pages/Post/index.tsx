@@ -13,11 +13,12 @@ import PostView from '../../Compositions/PostView'
 
 const Post: FCEP = ({ className }) => {
   const { postId } = useParams()
-  const [post, postContent, fetchState] = usePost(postId)
+  const { error, postData, fetchState } = usePost(postId)
+  const { post, postContent } = postData
   const { t } = useTranslation()
 
   // TODO: if post 못찾아오면 포스트가 없습니다 떠야함
-  if (!postId) return <Redirect to={{ pathname: '/' }} />
+  if (!postId || error) return <Redirect to={{ pathname: '/' }} />
 
   return (
     <Layout className={className}>

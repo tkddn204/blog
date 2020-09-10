@@ -17,7 +17,8 @@ import { FetchState } from '../../Types/firestore.schema'
 
 const EditPost: FCEP = ({ className }) => {
   const { postId } = useParams()
-  const [post, postContent, fetchState] = usePost(postId)
+  const { error, postData, fetchState } = usePost(postId)
+  const { post, postContent } = postData
   const { t } = useTranslation()
   const auth = useSelector(AuthSelector)
   const profile = useSelector(ProfileSelector)
@@ -33,6 +34,8 @@ const EditPost: FCEP = ({ className }) => {
     } else {
       Content = <PostEditor />
     }
+  } else if (error) {
+    Content = error
   } else {
     Content = <Loading />
   }
