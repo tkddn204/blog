@@ -13,6 +13,10 @@ export interface PostDataType {
   post: Post
   postContent: PostContent
 }
+export interface PostDataArgs {
+  post: Partial<Post>
+  postContent: Partial<PostContent>
+}
 
 interface GetPostArgs {
   postId: string
@@ -39,10 +43,7 @@ export const getPostThunk = createAsyncThunk<
   }
 })
 
-interface AddPostArgs {
-  newPost: Partial<Post>
-  postContent: Partial<PostContent>
-}
+type AddPostArgs = PostDataArgs
 
 export const addPostThunk = createAsyncThunk<
   PostFetchReturnState,
@@ -50,7 +51,7 @@ export const addPostThunk = createAsyncThunk<
   FirebaseThunkApiConfig
 >(
   'post/add',
-  async ({ newPost, postContent }: AddPostArgs, { rejectWithValue }) => {
+  async ({ post, postContent }: AddPostArgs, { rejectWithValue }) => {
     const firestore = firebase.firestore()
     try {
       // Post
@@ -58,9 +59,9 @@ export const addPostThunk = createAsyncThunk<
       const { id: postId } = newPostRef
       const now = moment.now()
       await newPostRef.set({
-        ...newPost,
+        ...post,
         id: postId,
-        summary: newPost.summary,
+        summary: post.summary,
         createdDate: now,
         modifiedDate: now,
       })
@@ -80,10 +81,7 @@ export const addPostThunk = createAsyncThunk<
   }
 )
 
-interface UpdatePostArgs {
-  post: Partial<Post>
-  postContent: Partial<PostContent>
-}
+type UpdatePostArgs = PostDataArgs
 
 export const updatePostThunk = createAsyncThunk<
   PostFetchReturnState,

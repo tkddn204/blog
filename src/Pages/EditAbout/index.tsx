@@ -1,7 +1,7 @@
 import React, { FCEP } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { AuthSelector, ProfileSelector } from '../../Features/Selectors'
 import Layout from '../../Components/Layout'
 import Header from '../../Components/Header'
@@ -10,15 +10,26 @@ import Section from '../../Components/Section'
 import RightHeader from '../../Compositions/RightHeader'
 import LeftHeader from '../../Compositions/LeftHeader'
 import Loading from '../../Components/Loading'
-import AboutEditor from '../../Compositions/AboutEditor'
 import useAbout from '../../Hooks/useAbout'
 import { FetchState } from '../../Types/firestore.schema'
+import Editor, { EditorData } from '../../Compositions/Editor'
+import { updateAbout } from '../../Features/about/aboutThunk'
 
-const EditPost: FCEP = ({ className }) => {
+const EditAbout: FCEP = ({ className }) => {
   const [about, fetchState] = useAbout()
   const { t } = useTranslation()
   const auth = useSelector(AuthSelector)
   const profile = useSelector(ProfileSelector)
+  const dispatch = useDispatch()
+
+  const onSaveAbout = (data: EditorData) => {
+    const editedAbout = {
+      content: data.content,
+    }
+    if (data.content?.length) {
+      dispatch(updateAbout(editedAbout))
+    }
+  }
 
   let Content
   if (profile.isEmpty || profile.role !== 'admin') {
@@ -27,7 +38,12 @@ const EditPost: FCEP = ({ className }) => {
     if (auth.isEmpty) {
       Content = '로그인해주세요'
     } else if (fetchState !== FetchState.empty) {
-      Content = <AboutEditor aboutObj={about} />
+      const editorData: EditorData = {
+        content: about.content,
+      }
+      Content = (
+        <Editor editorData={editorData} onSave={onSaveAbout} option="minimum" />
+      )
     } else {
       Content = <Loading />
     }
@@ -47,4 +63,4 @@ const EditPost: FCEP = ({ className }) => {
   )
 }
 
-export default EditPost
+export default EditAbout
