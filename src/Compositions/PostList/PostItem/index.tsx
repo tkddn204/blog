@@ -3,7 +3,7 @@ import { FCEP } from 'react'
 import { css, jsx } from '@emotion/core'
 import moment from 'moment'
 import useStyle from '../../../Hooks/useStyle'
-import { Post } from '../../../Types/firestore.schema'
+import { Post } from '../../../Types/firestoreSchema'
 import { ThemeType } from '../../../Types/theme'
 
 const postItemStyle = (theme: ThemeType) => css`

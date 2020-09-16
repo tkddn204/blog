@@ -12,3 +12,18 @@ export const isEmptyObject = (
 export const isExistObjectKey = (obj: Record<string, unknown>): boolean => {
   return obj && Object.keys(obj).length !== 0
 }
+
+export const debounce: (fn: () => void, time: number) => () => void = (
+  fn,
+  time
+) => {
+  let timeout: NodeJS.Timeout
+
+  return () => {
+    if (timeout) {
+      clearTimeout(timeout)
+    }
+
+    timeout = setTimeout(fn, time)
+  }
+}

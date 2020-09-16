@@ -1,6 +1,6 @@
 {
   "name": "blog",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "repository": {
     "url": "https://github.com/tkddn204/blog"
@@ -73,10 +73,7 @@
     }
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
-      "yarn lint:fix",
-      "git add ."
-    ]
+    "*.{ts,tsx}": "yarn lint:fix"
   },
   "jest": {
     "snapshotSerializers": [

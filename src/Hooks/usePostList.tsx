@@ -5,7 +5,7 @@ import {
   ReduxFirestoreQuerySetting,
   useFirestoreConnect,
 } from 'react-redux-firebase'
-import { FetchState, Post } from '../Types/firestore.schema'
+import { FetchState, Post } from '../Types/firestoreSchema'
 import { RootState } from '../Application/Store'
 
 const query = (startAt = 0): ReduxFirestoreQuerySetting => ({

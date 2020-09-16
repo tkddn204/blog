@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { FetchState } from '../Types/firestore.schema'
+import { FetchState } from '../Types/firestoreSchema'
 import { getPostThunk } from '../Features/post/postThunk'
 import { PostSelector } from '../Features/Selectors'
 import { PostState } from '../Features/post/postSlice'

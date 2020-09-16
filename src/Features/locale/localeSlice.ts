@@ -4,13 +4,7 @@ import {
   PayloadAction,
   SliceCaseReducers,
 } from '@reduxjs/toolkit'
-
-/**
- * 지역 상태
- *
- * @type 'ko' | 'en'
- */
-export type LocaleState = 'ko' | 'en'
+import { LocaleState } from '../../Types/localStorageSchema'
 
 /**
  * 지역 관련 리듀서 함수를 모은 인터페이스
@@ -34,7 +28,6 @@ export const localeSlice = createSlice<LocaleState, Reducers>({
     changeLocale: (state, action) => {
       // eslint-disable-next-line no-param-reassign
       state = action.payload
-      return state
     },
   },
 })

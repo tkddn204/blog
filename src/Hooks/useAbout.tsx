@@ -5,7 +5,7 @@ import {
   ReduxFirestoreQuerySetting,
   useFirestoreConnect,
 } from 'react-redux-firebase'
-import { About, FetchState } from '../Types/firestore.schema'
+import { About, FetchState } from '../Types/firestoreSchema'
 import { RootState } from '../Application/Store'
 import { isExistObjectKey } from '../Utils'
 

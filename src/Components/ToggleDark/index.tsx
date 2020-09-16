@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 
 import useStyle from '../../Hooks/useStyle'
 import { changeTheme } from '../../Features/theme/themeSlice'
-import { themeSelector } from '../../Features/Selectors'
+import { ThemeSelector } from '../../Features/Selectors'
 import MoonSVG from './MoonSVG'
 import SunSvg from './SunSVG'
 
@@ -32,7 +32,7 @@ const darkStyle = () => css`
 
 const ToggleDark: FCEP = ({ className }) => {
   const dispatch = useDispatch()
-  const theme = useSelector(themeSelector)
+  const theme = useSelector(ThemeSelector)
 
   const toggleTheme = () => {
     dispatch(changeTheme(theme === 'dark' ? 'light' : 'dark'))

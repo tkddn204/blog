@@ -3,7 +3,7 @@ import { FCEP } from 'react'
 import { css, jsx } from '@emotion/core'
 import { Link } from 'react-router-dom'
 import Loading from '../../Components/Loading'
-import { FetchState, Post } from '../../Types/firestore.schema'
+import { FetchState, Post } from '../../Types/firestoreSchema'
 import PostItem from './PostItem'
 import Section from '../../Components/Section'
 

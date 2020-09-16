@@ -1,7 +1,7 @@
 import moment from 'moment'
 import firebase from 'firebase/app'
 import { AppThunk } from '../../Application/Store'
-import { About } from '../../Types/firestore.schema'
+import { About } from '../../Types/firestoreSchema'
 
 // eslint-disable-next-line import/prefer-default-export
 export const updateAbout = (editedAbout: Partial<About>): AppThunk => async (

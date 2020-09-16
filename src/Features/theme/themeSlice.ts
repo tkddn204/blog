@@ -4,13 +4,7 @@ import {
   PayloadAction,
   SliceCaseReducers,
 } from '@reduxjs/toolkit'
-
-/**
- * 테마 상태
- *
- * @type 'default' | 'light' | 'dark'
- */
-export type ThemeState = 'default' | 'light' | 'dark'
+import { ThemeState } from '../../Types/localStorageSchema'
 
 /**
  * 테마 관련 리듀서 함수를 모은 인터페이스

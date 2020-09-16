@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { I18nextProvider } from 'react-i18next'
 import moment from 'moment'
 import 'moment/locale/ko'
-import { localeSelector } from '../Selectors'
+import { LocaleSelector } from '../Selectors'
 import i18next from '../../Application/I18nConfig'
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
 }
 
 const LocaleProvider: FC<Props> = ({ children }: Props) => {
-  const locale = useSelector(localeSelector)
+  const locale = useSelector(LocaleSelector)
 
   useEffect(() => {
     moment.locale(locale)

@@ -1,11 +1,8 @@
 import moment from 'moment'
-import firebase, { FirebaseError } from 'firebase/app'
+import firebase from 'firebase/app'
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { Post, PostContent } from '../../Types/firestore.schema'
-
-interface FirebaseThunkApiConfig {
-  rejectValue: FirebaseError
-}
+import { FirebaseThunkApiConfig } from '../../Types/thunkConfig'
+import { Post, PostContent } from '../../Types/firestoreSchema'
 
 export type PostFetchReturnState = 'success' | 'FailPostContent'
 

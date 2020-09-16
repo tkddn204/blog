@@ -2,7 +2,7 @@ import React, { FC, ReactNode, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ThemeProvider } from 'emotion-theming'
 import { changeTheme } from './themeSlice'
-import { themeSelector } from '../Selectors'
+import { ThemeSelector } from '../Selectors'
 import { commonTheme } from '../../Application/Theme'
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
 
 const SelectThemeProvider: FC<Props> = ({ children }: Props) => {
   const dispatch = useDispatch()
-  const theme = useSelector(themeSelector)
+  const theme = useSelector(ThemeSelector)
 
   useEffect(() => {
     if (theme !== 'dark') {

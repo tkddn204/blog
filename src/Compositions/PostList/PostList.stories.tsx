@@ -4,7 +4,7 @@ import { Meta, Story } from '@storybook/react/types-6-0'
 import { jsx } from '@emotion/core'
 import PostList from './index'
 import DocTemplate from '../../Utils/StorybookDocTemplate'
-import { FetchState, Post } from '../../Types/firestore.schema'
+import { FetchState, Post } from '../../Types/firestoreSchema'
 import { dummyPosts } from '../../__fixtures__/posts'
 import PostItem from './PostItem'
 

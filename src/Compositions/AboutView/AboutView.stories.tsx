@@ -4,7 +4,7 @@ import { Meta, Story } from '@storybook/react/types-6-0'
 import { jsx } from '@emotion/core'
 import AboutView from '.'
 import DocTemplate from '../../Utils/StorybookDocTemplate'
-import { FetchState, About as AboutType } from '../../Types/firestore.schema'
+import { FetchState, About as AboutType } from '../../Types/firestoreSchema'
 
 export default {
   title: 'Compositions/AboutView',

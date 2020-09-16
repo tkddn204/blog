@@ -27,6 +27,7 @@ import { constants as rfConstants, firestoreReducer } from 'redux-firestore'
 
 import localeReducer from '../Features/locale/localeSlice'
 import themeReducer from '../Features/theme/themeSlice'
+import editorReducer from '../Features/editor/editorSlice'
 import postReducer from '../Features/post/postSlice'
 
 /**
@@ -42,6 +43,7 @@ const persistedReducer = persistReducer(
   combineReducers({
     locale: localeReducer,
     theme: themeReducer,
+    editor: editorReducer,
   })
 )
 

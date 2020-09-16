@@ -1,8 +1,7 @@
 import React, { FC } from 'react'
 import { Provider as ReduxProvider } from 'react-redux'
-import { Global, css } from '@emotion/core'
+import { Global } from '@emotion/core'
 import { ThemeProvider } from 'emotion-theming'
-import emotionNormalize from 'emotion-normalize'
 
 import firebase from 'firebase/app'
 import 'firebase/auth'
@@ -19,6 +18,7 @@ import { persistor, store } from './Store'
 import './I18nConfig'
 import LocaleProvider from '../Features/locale/LocaleProvider'
 import { commonTheme } from './Theme'
+import globalStyle from './GlobalStyle'
 // import SelectThemeProvider from '../Features/theme/SelectThemeProvider'
 
 // Initialize Firebase
@@ -50,11 +50,7 @@ const Providers: FC = ({ children }) => (
           <BrowserRouter>
             <ThemeProvider theme={commonTheme}>
               <LocaleProvider>
-                <Global
-                  styles={css`
-                    ${emotionNormalize}
-                  `}
-                />
+                <Global styles={globalStyle} />
                 {children}
               </LocaleProvider>
             </ThemeProvider>

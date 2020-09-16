@@ -3,7 +3,7 @@ import { SerializedStyles } from '@emotion/css'
 import { css } from '@emotion/core'
 import { useSelector } from 'react-redux'
 import { useTheme } from 'emotion-theming'
-import { themeSelector } from '../Features/Selectors'
+import { ThemeSelector } from '../Features/Selectors'
 import { ThemeType } from '../Types/theme'
 
 export type ThemedStyles = (theme: ThemeType) => SerializedStyles
@@ -16,7 +16,7 @@ interface StyledType {
 }
 
 const useStyle: StyledType = (style, darkStyle, custom?) => {
-  const themeState = useSelector(themeSelector)
+  const themeState = useSelector(ThemeSelector)
   const theme = useTheme<ThemeType>()
 
   const styleWithTheme = style(theme)

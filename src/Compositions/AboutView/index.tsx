@@ -2,7 +2,7 @@
 import { FCEP } from 'react'
 import 'github-markdown-css/github-markdown.css'
 import { css, jsx } from '@emotion/core'
-import { About, FetchState } from '../../Types/firestore.schema'
+import { About, FetchState } from '../../Types/firestoreSchema'
 import Article from '../../Components/Article'
 import Loading from '../../Components/Loading'
 import MarkdownViewer from '../../Components/MarkdownViwer'

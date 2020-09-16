@@ -1,4 +1,4 @@
-import { Post } from '../Types/firestore.schema'
+import { Post } from '../Types/firestoreSchema'
 
 export const dummyAuthors: string[] = [
   'Mauricio Benck',

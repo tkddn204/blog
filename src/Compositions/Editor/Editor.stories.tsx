@@ -4,7 +4,7 @@ import { Meta, Story } from '@storybook/react/types-6-0'
 import { jsx } from '@emotion/core'
 import Editor from '.'
 import DocTemplate from '../../Utils/StorybookDocTemplate'
-import { FetchState, Post as PostType } from '../../Types/firestore.schema'
+import { FetchState, Post as PostType } from '../../Types/firestoreSchema'
 
 export default {
   title: 'Compositions/PostEditor',

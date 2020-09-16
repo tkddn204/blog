@@ -11,7 +11,7 @@ import RightHeader from '../../Compositions/RightHeader'
 import LeftHeader from '../../Compositions/LeftHeader'
 import Loading from '../../Components/Loading'
 import useAbout from '../../Hooks/useAbout'
-import { FetchState } from '../../Types/firestore.schema'
+import { FetchState } from '../../Types/firestoreSchema'
 import Editor, { EditorData } from '../../Compositions/Editor'
 import { updateAbout } from '../../Features/about/aboutThunk'
 

@@ -8,7 +8,7 @@ import {
   FetchState,
   Post as PostType,
   PostContent,
-} from '../../Types/firestore.schema'
+} from '../../Types/firestoreSchema'
 import { dummyPosts } from '../../__fixtures__/posts'
 
 export default {
