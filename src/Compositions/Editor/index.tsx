@@ -59,15 +59,13 @@ const Editor: FCEP<Props> = ({ editorData, onSave, className, option }) => {
     errors,
     unregister,
   } = useForm<EditorData>()
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const setDataToLocalStorage = useCallback(
-    debounce(() => {
-      dispatch(setEditorData(getValues()))
-      setSaveState('saved')
-    }, 1000),
-    []
-  )
+  const useDebounceCallback = debounce(() => {
+    dispatch(setEditorData(getValues()))
+    setSaveState('saved')
+  }, 1000)
+  const setDataToLocalStorage = useCallback(useDebounceCallback, [
+    useDebounceCallback,
+  ])
 
   useEffect(() => {
     if (editorData?.title) {

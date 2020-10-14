@@ -13,10 +13,8 @@ export const isExistObjectKey = (obj: Record<string, unknown>): boolean => {
   return obj && Object.keys(obj).length !== 0
 }
 
-export const debounce: (fn: () => void, time: number) => () => void = (
-  fn,
-  time
-) => {
+type DebounceFunctionType = (fn: () => void, time: number) => () => void
+export const debounce: DebounceFunctionType = (fn, time) => {
   let timeout: NodeJS.Timeout
 
   return () => {
