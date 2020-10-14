@@ -18,7 +18,7 @@ module.exports = {
   },
   globals: {
     Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly'
+    SharedArrayBuffer: 'readonly',
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -30,30 +30,24 @@ module.exports = {
     createDefaultProgram: true,
   },
   rules: {
-    'prettier/prettier': [
-      'error',
-      {
-        trailingComma: 'es5',
-        tabWidth: 2,
-        singleQuote: true,
-        semi: false,
-        arrowParens: 'always',
-        endOfLine: 'auto',
-      },
-    ],
     'import/no-extraneous-dependencies': [
       'error',
       {
-        'devDependencies': true,
-        'optionalDependencies': true
-      }
+        devDependencies: true,
+        optionalDependencies: true,
+      },
     ],
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['error'],
     'no-console': ['error'],
     'linebreak-style': 'off',
     'jsx-a11y/accessible-emoji': 0,
-    'no-param-reassign': ["error", { "props": false }]
+    'no-param-reassign': [
+      'error',
+      {
+        props: false,
+      },
+    ],
   },
   overrides: [
     {
