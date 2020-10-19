@@ -1,6 +1,6 @@
-# 📗 blog
+# 📗 Blog App
 
-**private blog repo 😄**
+**Blog App Repo for practice 😄**
 
 - This project has been bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 - cra template: typescript
